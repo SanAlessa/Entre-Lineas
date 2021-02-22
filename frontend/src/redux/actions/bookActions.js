@@ -138,27 +138,71 @@ const bookActions = {
     }
   },
 
-  // updateBook: (newChapter, id, token) => {
-  //   return async (dispatch, getState) => {
-  //     try {
-  //       const response = await axios.put('http://localhost:4000/api/book/addChapter', {newChapter, id}, {
-  //         headers: {
-  //           Authorization : `Bearer ${token}`
-  //         }
-  //       })
-  //       dispatch({type: 'UPDATE_BOOK', payload: response.data.response})
-  //       console.log(response.data)
-  //     }catch(error){
-  //       Swal.fire({
-  //         icon: 'error',
-  //         title: '¡Error!',
-  //         text: "No se pudo guardar el capitulo.",
-  //         text: "Por favor intente mas tarde.",
-  //         showConfirmButton: false,
-  //         timer: 4000
-  //         })}
-  //   }
-  // },
+  modifyChapterTitle:(title, chapterId, token) =>{
+    return async(dispatch) => {
+      try {
+        const response = await axios.post('http://localhost:4000/api/book/modifyChapterTitle', {title, chapterId}, {
+          headers: {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        console.log(response.data)
+      }catch(errpr){
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: "No se pudo guardar el capitulo.",
+          text: "Por favor intente mas tarde.",
+          showConfirmButton: false,
+          timer: 4000
+        })
+      }
+    }
+  },
+  modifyContent: (updatedContent, contentId, chapterId, bookId, token) => {
+    console.log(chapterId)
+    return async (dispatch, getState) => {
+      try {
+        const response = await axios.post('http://localhost:4000/api/book/modifyChapter', {updatedContent, contentId, chapterId, bookId}, {
+          headers: {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        dispatch({type: 'UPDATE_BOOK', payload: response.data.response})
+        console.log(response.data)
+      }catch(error){
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: "No se pudo guardar el capitulo.",
+          text: "Por favor intente mas tarde.",
+          showConfirmButton: false,
+          timer: 4000
+          })}
+    }
+  },
+
+  deleteContent:(contentId, chapterId, bookId, token) => {
+    return async (dispatch, getState) => {
+      try {
+        const response = await axios.put('http://localhost:4000/api/book/modifyChapter', {contentId, bookId}, {
+          headers: {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        dispatch({type: 'UPDATE_BOOK', payload: response.data.response})
+        console.log(response.data)
+      }catch(error){
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: "No se pudo guardar el capitulo.",
+          text: "Por favor intente mas tarde.",
+          showConfirmButton: false,
+          timer: 4000
+          })}
+    }
+  },
 
   addComment:(content, id, token) => {
     return async (dispatch, getState) => {

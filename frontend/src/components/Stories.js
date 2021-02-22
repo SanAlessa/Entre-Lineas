@@ -13,8 +13,11 @@ const Stories = (props)=>{
         props.booksByGenre.sort((a,b)=> b.views - a.views)
     },[namePage])
 
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> 7392598177de9791e1296ee5d670b7d2a94919ad
     if(value !== "") {
         sortFilter()
         setValue('mostPopular')

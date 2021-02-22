@@ -20,7 +20,7 @@ const userController = {
             var token = jwt.sign({...newUserSaved}, process.env.SECRET_KEY, {})
         }
         return res.json({success: true,
-            response: {token, firstname: newUserSaved.firstname, email: newUserSaved.email, lastname: newUserSaved.lastname, birthday: newUserSaved.birthday, image: newUserSaved.image}})
+            response: {token, firstname: newUserSaved.firstname, email: newUserSaved.email, lastname: newUserSaved.lastname, birthday: newUserSaved.birthday, image: newUserSaved.image, id: newUserSaved._id}})
     },
 
     signIn: async (req, res) => {
@@ -35,7 +35,7 @@ const userController = {
         }
         var token = jwt.sign({...userExists}, process.env.SECRET_KEY, {})
         return res.json({success: true, response: 
-            {token, firstname: userExists.firstname, email: userExists.email, lastname: userExists.lastname, birthday: userExists.birthday, image: userExists.image}})
+            {token, firstname: userExists.firstname, email: userExists.email, lastname: userExists.lastname, birthday: userExists.birthday, image: userExists.image, id: userExists._id}})
     },
 
     logFromLS: async (req, res) => {

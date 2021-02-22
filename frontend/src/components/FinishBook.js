@@ -5,9 +5,8 @@ import Swal from'sweetalert2';
 
 
 const FinishBook=(props)=>{
-
   const id = props.match.params.id
-
+  console.log(props.match.url)
   const [book, setBook] = useState({})
   const [fileUrl, setFileUrl] = useState(null)
 
@@ -33,24 +32,23 @@ const FinishBook=(props)=>{
     const formData = new FormData()
     formData.append('image', book.image)
     formData.append('id', id)
-      var filesExtension = ['.jpg', '.png', '.jpeg']
-      if(book.image && filesExtension.some(file=>book.image.name.includes(file))){
-        props.addImage(formData, props.loggedUser.token)
-        Swal.fire({
-          icon: 'success',
-          title: 'Libro guardado con exito!',
-          showConfirmButton: false,
-          timer: 4000
-        })
-      }else{
-        Swal.fire({
-          icon: 'error',
-          title: 'Extension de archivo no permitida.',
-          showConfirmButton: false,
-          timer: 4000
-        })
-      }
-
+    var filesExtension = ['.jpg', '.png', '.jpeg']
+    if(book.image && filesExtension.some(file=>book.image.name.includes(file))){
+      props.addImage(formData, props.loggedUser.token)
+      Swal.fire({
+        icon: 'success',
+        title: 'Libro guardado con exito!',
+        showConfirmButton: false,
+        timer: 4000
+      })
+    }else{
+      Swal.fire({
+        icon: 'error',
+       title: 'Extension de archivo no permitida.',
+        showConfirmButton: false,
+        timer: 4000
+      })
+    }
   }
 
   return (
@@ -59,7 +57,7 @@ const FinishBook=(props)=>{
       <div className="form-finishBook">
         <div className="inputAndButtonFinishBook">
           <div className="finishBook">
-            <h3>Elegir foto de portada</h3>
+            <h3>{props.match.url==='/finish-book/:id' ? 'Elegir foto de portada' : 'Cambiar foto de portada!'}</h3>
             <div className="selectImagPort" style={{cursor: 'pointer'}}>
               <label style={{cursor: 'pointer'}} for="image">
                 <i style={{cursor: 'pointer'}} for="image" class="fas fa-hand-pointer"></i>

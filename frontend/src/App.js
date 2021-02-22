@@ -22,6 +22,7 @@ import ModifyBook from './components/ModifyBook'
 import ForgotPassword from './components/ForgotPassword'
 import SendEmail from './components/SendEmail'
 import MyBooks from './components/MyBooks'
+import ModifyChapter from './components/ModifyChapter'
 
 const App = (props) => {
   const [reload, setReload] = useState(false)
@@ -40,6 +41,8 @@ const App = (props) => {
           <Route path="/new-book/:id" component={NewChapter}/>
           <Route path='/userprofile' component={UserProfile}/>
           <Route path='/finish-book/:id' component={FinishBook}/>
+          <Route path='/modify-book/:id/image' component={FinishBook}/>
+          <Route path='/modify-book/:id/:chapterId/:index' component={ModifyChapter}/>
           <Route path='/modify-book/:id' component={ModifyBook}/>
           <Route path='/reset-password/:email' component={ForgotPassword}/>
           <Route path='/myBooks' component={MyBooks}/>

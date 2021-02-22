@@ -2404,3 +2404,98 @@ border-radius: 30px;
     display: flex;
     justify-content: space-evenly;
 }
+/* ESTILOS MODIFICAR LIBRO (MAURI) */
+.oneModify{
+    height: 80vh;
+    width: 98vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.fourModify{
+    background-size: cover;
+    box-shadow: 0 12px 16px 0 rgba(211, 209, 209, 0.5),0 17px 50px 0 rgba(238, 235, 235, 0.5);
+}
+
+.threeModify{
+    position: absolute;
+    display: flex;
+    width: 60vw;
+    margin-top: 25vh;
+    margin-left: 3vh;
+    align-items: center;
+}
+
+.twoModify{
+    background-image: url(../assets/fontoDesciptionStory.jpg);
+    height: 60vh;
+    width: 98.7vw;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5),0 17px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+.fiveModify {
+    color: rgb(255, 255, 255);
+    margin-left: 4vh;
+}
+
+.buttonModify {
+    padding: 1vh 8vh 1vh 8vh;
+    margin-top: 11vh;
+    background-color: rgb(98, 18, 129);
+    color: rgb(255, 255, 255);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    border-radius: 25px 25px 25px 25px ;
+}
+.eightModify{
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    border-bottom: solid 2px rgb(103, 11, 139);
+    margin-bottom: 0vh;
+    margin-left: 4vh;
+}
+
+.eightModify h2 {
+    margin-left: 3vh;
+
+}
+
+.nineModify{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+    border-bottom: solid 2px rgb(103, 11, 139);
+    margin-left: 4vh;
+}
+
+.nineModify button {
+    width:50vw ;
+    text-align: start;
+    background-color: rgb(245, 245, 245);
+    border: none;
+    padding: 2vh 0vh 2vh 0vh;
+}
+
+.nineModify button:hover{
+    background-color: rgb(228, 228, 228);
+    font-size: 3vh;
+}
+
+.nineModify button p {
+    margin-left: 3vh;
+}
+.sevenModify{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

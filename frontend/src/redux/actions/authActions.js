@@ -11,8 +11,7 @@ const authActions = {
                 if(!respuesta.data.success){
                     return respuesta.data
                 } 
-                dispatch({type: 'LOG_USER', payload: respuesta.data})//lo que ma contesto el backend se lo mando al reducers
-                console.log(respuesta.data)
+                dispatch({type: 'LOG_USER', payload: respuesta.data})//lo que me contesto el backend se lo mando al reducer
             }catch(errores){
                 console.log(errores)
             }

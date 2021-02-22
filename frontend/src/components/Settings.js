@@ -47,7 +47,7 @@ const Settings = (props) => {
         timer: 4000
         })
 }
-
+console.log(props.loggedUser)
   const send = e => {
     e.preventDefault()
     const emailValue = document.getElementById('email').value
@@ -63,11 +63,10 @@ const Settings = (props) => {
     formData.append('birthday', birthdayValue)
     formData.append('image', imageValue)
     formData.append('id', props.loggedUser.id)
-    console.log(imageValue)
 
     var filesExtension = ['.jpg', '.png', '.jpeg']
 
-    if(emailValue==='' || firstnameValue=== '' || lastnameValue === ''||  imageValue=== ''){
+    if(emailValue==='' || firstnameValue=== '' || lastnameValue === ''){
       const text = 'Verifique que todos los campos esten llenos'
       alertError(text)
     }else if(imageValue && filesExtension.some(file=>imageValue.name.includes(file))){

@@ -1,25 +1,44 @@
 import React, { useEffect } from 'react'
-import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const ModifyBook =(props)=>{
+const ModifyBook = (props) => {
+  var namePage = props.match.params.id
+  var filtro = props.books.filter(libro => libro._id === namePage)
 
-  var book = props.books.map(book=> console.log(book._id === props.match.params.id))
-
-  useEffect(()=>{
-  },[])
+  useEffect(() => {
+  }, [])
   console.log(props.loggedUser)
-  console.log(props.books)
+  console.log(filtro[0])
   return (
     <>
-    {!props.books ?
-    <h1>NO HAY NADA</h1>
-    :
-    <div className="modify-book">
-      <div className="modify-book-image">IMAGEN DEL LIBRO</div>
-      <h2 className="modify-book-title">NOMBRE DEL LIBRO</h2>
-      <div className="modify-book-chapters">CAPITULOS</div>
-    </div>
-    }
+      {!props.books ?
+        <h1>NO HAY NADA</h1>
+        :
+        <> <div className="oneModify">
+          <div className="twoModify"></div>
+          <div className="threeModify">
+            <div className="fourModify" style={{ backgroundImage: `url('${filtro[0].image}')`, width: '15vw', height: '50vh' }}></div>
+            <div className="fiveModify">
+              <h2>{filtro[0].title}</h2>
+              <h5>{filtro[0].genre}</h5>
+              <Link to='/modify-book/:id/image'><button className="buttonModify">Modificar Imagen</button></Link>
+            </div>
+          </div>
+        </div>
+          <div className="sixModify">
+            <div className="sevenModify">
+              <div className="eightModify">
+                <h2>Tabla de Contenidos</h2>
+              </div>
+              <div className="nineModify">
+                {filtro[0].chapters.map((chapter, index) => {
+                  return (
+                    <Link to={`/modify-book/${filtro[0]._id}/${chapter._id}/${index}`}><button><p>{chapter.title}</p></button></Link>)})}
+                </div>
+            </div>
+        </div>
+      </>}
     </>
   )
 }
