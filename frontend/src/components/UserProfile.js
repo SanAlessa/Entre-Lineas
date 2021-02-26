@@ -72,8 +72,8 @@ const UserProfile = (props) => {
                     </div>
                     <div className='containerViewComponentOption'>
                     <div className='booksBoxUserProf'>
-                            {visible ? myBooks.length === 0 ? <h1 style={{textAlign:'center'}}>Todavía no tienes libros creados. Comienza a escribir tus historias</h1> : myBooks.map(book => <MyBooks libro={book}/>): 
-                            booksLiked.length === 0 ? <h1 style={{textAlign:'center'}}>Todavia no te gusto ningun libro!</h1>: booksLiked.map(book=> <MyBooks libro={book}/>)}    
+                            {visible ? myBooks.length === 0 ? <h1 style={{textAlign:'center'}}>Todavía no tienes libros creados. Comienza a escribir tus historias</h1> : myBooks.map(book => <MyBooks libro={book} visible={visible} />): 
+                            booksLiked.length === 0 ? <h1 style={{textAlign:'center'}}>Todavia no te gusto ningun libro!</h1>: booksLiked.map(book=> <MyBooks libro={book} visible={visible}/>)}    
                      </div>   
                     </div>
                 </div>
