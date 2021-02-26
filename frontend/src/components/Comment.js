@@ -58,7 +58,7 @@ const keyPress = e => {
                         <Button onClick={modiComment}><i className="fas fa-paper-plane"></i></Button>
                     </div>}
                 {props.loggedUser && loggedUser === props.comment.userId && !input &&
-                <div className="botonesEditAndBorrar d-flex">
+                <div className="botonesEditAndBorrar d-flex h-50">
                     <Button onClick={deleteC}><i className="far fa-trash-alt"></i></Button>
                     <Button onClick={() => {setInput(!input)}}><i className="far fa-edit"></i></Button>
                 </div>}

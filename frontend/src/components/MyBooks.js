@@ -1,7 +1,10 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import bookActions from '../redux/actions/bookActions'
 const MyBooks = (props)=>{
-    console.log(props.libro)
+    const views =()=>{
+        props.incViews(props.libro._id)
+    }
     return (
         <>
         <div className='storyContainerProfile'>
@@ -23,7 +26,10 @@ const MyBooks = (props)=>{
             </div>            
             <div className='containerThirdBlockStory'>
                 <div className='storyButtons'>
+                    {props.visible ?
                     <Link to={`/modify-book/${props.libro._id}`}><button className='btn btn-danger verMasStory'>Editar Libro</button></Link>
+                    :
+                    <Link to={`/story/${props.libro._id}`}><button onClick={views} className='btn btn-danger verMasStory'>Ver Mas</button></Link>}
                 </div>
             </div>
         </div>
@@ -38,4 +44,7 @@ const mapStateToProps = state => {
         loggedUser: state.auth.loggedUser
     }
   }
-export default connect(mapStateToProps)(MyBooks);
+  const mapDispatchToProps= {
+      incViews: bookActions.incViews
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(MyBooks);

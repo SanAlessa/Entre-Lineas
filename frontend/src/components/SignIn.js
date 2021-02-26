@@ -72,7 +72,11 @@ const SignIn = (props) => {
         }
     }
 
-
+    const keyPress = e => {
+        if (e.key === 'Enter') {
+            validateUser()
+        }
+    }
     return (
         <div className="containerLogin">
             <div className="imagRegister"></div>
@@ -84,7 +88,7 @@ const SignIn = (props) => {
                         <input className="inputRegisterPassword" type={visible ? "text" : "password"} name="password" placeholder="Contraseña" onChange={readInput} />
                         <div className='ojito'><i className={visible ? "far fa-eye-slash" : "far fa-eye"} onClick={() => setVisible(!visible)}></i></div>
                     </div>
-                    <button className="botonRegister" onClick={validateUser} >Iniciar sesion</button>
+                    <button className="botonRegister" onKeyPress={keyPress} onClick={validateUser} >Iniciar sesion</button>
                     <GoogleLogin
                         clientId="1038057212104-nnvs147cdmm0l23842rfofjg32aqll0s.apps.googleusercontent.com"
                         buttonText="Iniciar sesion con google"
