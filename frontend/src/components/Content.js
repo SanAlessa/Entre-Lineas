@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
 import bookActions from "../redux/actions/bookActions"
+import { Button } from 'reactstrap'
 
 const Content =(props)=>{
   const [visible, setVisible] = useState(false)
@@ -37,8 +38,10 @@ const Content =(props)=>{
       :
       <div>
         <textarea name="updatedContent" id="updatedContent" disabled={!visible && true} value={updatedContent} style={{resize: 'none', width: '100%'}}></textarea>
-        <i onClick={edit} className="far fa-edit"></i>
-        <i onClick={deleteContent} className="fas fa-eraser"></i>
+          <div className="botonesEditAndBorrar d-flex h-50">
+            <Button><i  onClick={edit} className="far fa-edit"></i></Button>
+            <Button onClick={deleteContent}><i className="far fa-trash-alt"></i></Button>
+          </div>
       </div>
       }
     </div>

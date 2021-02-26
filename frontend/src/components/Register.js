@@ -44,8 +44,8 @@ const Register = ( props ) => {
           })
         }
 
-    const validateUser = async e => { // function that runs when you click the create user button
-        e.preventDefault() //prevent reloading the page
+    const validateUser = async () => { // function that runs when you click the create user button
+         //prevent reloading the page
         if(checkIfInputsAreEmpty){
             const text = 'Verifique que todos los campos esten llenos'
             alertError(text)
@@ -72,13 +72,19 @@ const Register = ( props ) => {
                 password:response.profileObj.googleId,
                 image: response.profileObj.imageUrl
             })
-        if(respuesta && !respuesta.success){
-            alertError(respuesta.error)
-        }else{
-            alertSuccess()
+            if(respuesta && !respuesta.success){
+                alertError(respuesta.error)
+            }else{
+                alertSuccess()
+            }
         }
     }
-}
+    const keyPress = e => {
+        if (e.key === 'Enter') {
+            validateUser()
+        }
+    }
+
 
 
 
@@ -94,9 +100,9 @@ return (
                     </div>
                     <input  className="inputRegister" type="date" min="1950-01-01" max="2021-2-31" name="birthday" placeholder="fechas de nacimiento" onChange={readInput}/>
                     <div className="userNameAndPassword">
-                        <input className="inputRegister" type="text" name="email" placeholder="Email" onChange={readInput} />
+                        <input onKeyPress={keyPress} className="inputRegister" type="text" name="email" placeholder="Email" onChange={readInput} />
                         <div style={{display:'flex',alignItems:'center'}}>
-                            <input className="inputRegister" type={visible ? "text" : "password"} name="password" placeholder="Contraseña" onChange={readInput} />
+                            <input onKeyPress={keyPress}  className="inputRegister" type={visible ? "text" : "password"} name="password" placeholder="Contraseña" onChange={readInput} />
                             <i className={visible ? "far fa-eye-slash" : "far fa-eye"} onClick={()=>setVisible(!visible)}></i>
                         </div>
                     </div>

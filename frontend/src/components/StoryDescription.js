@@ -56,7 +56,14 @@ const StoryDescription = (props)=>{
             text: 'Esta historia todavia no tiene capitulos',
           })
         props.history.push(`/stories/${filtro[0].genre}`)
-    }   
+    }
+    const alert =()=>{ 
+        Swal.fire({
+            icon: 'error',
+            title: '¡Lo sentimos!',
+            text: 'Primero ingresa a tu cuenta'
+          })
+    }
     return(
         <>
         {filtro.length === 0 ? 
@@ -87,7 +94,7 @@ const StoryDescription = (props)=>{
                             ?
                             <button className="BotonLeer" onClick={props.loggedUser && dismissVote}>Quitar Voto <i class="fas fa-star"></i></button>
                             : 
-                            <button className="BotonLeer" onClick={props.loggedUser ? votes : ()=>alert('Necesitas iniciar sesion para poder votar!')}>Depositar voto <i class="far fa-star"></i></button>}
+                            <button className="BotonLeer" onClick={props.loggedUser ? votes : ()=> alert()}>Depositar voto <i class="far fa-star"></i></button>}
                         </div>
                     </div>
                 </div>

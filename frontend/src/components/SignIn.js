@@ -40,8 +40,8 @@ const SignIn = (props) => {
         })
     }
 
-    const validateUser = async e => { // function that runs when you click the create user button
-        e.preventDefault() //prevent reloading the page
+    const validateUser = async ()  => { // function that runs when you click the create user button
+         //prevent reloading the page
         if (userLogueado.email === "" || userLogueado.password === "") {
             const text = 'Verifique que todos los campos esten llenos'
             alertError(text)
@@ -85,10 +85,10 @@ const SignIn = (props) => {
                     <h2>Iniciar Sesion</h2>
                     <input className="inputRegister" type="text" name="email" placeholder="Nombre de Usuario" onChange={readInput} />
                     <div className="a">
-                        <input className="inputRegisterPassword" type={visible ? "text" : "password"} name="password" placeholder="Contraseña" onChange={readInput} />
+                        <input onKeyPress={keyPress} className="inputRegisterPassword" type={visible ? "text" : "password"} name="password" placeholder="Contraseña" onChange={readInput} />
                         <div className='ojito'><i className={visible ? "far fa-eye-slash" : "far fa-eye"} onClick={() => setVisible(!visible)}></i></div>
                     </div>
-                    <button className="botonRegister" onKeyPress={keyPress} onClick={validateUser} >Iniciar sesion</button>
+                    <button className="botonRegister" onClick={validateUser} >Iniciar sesion</button>
                     <GoogleLogin
                         clientId="1038057212104-nnvs147cdmm0l23842rfofjg32aqll0s.apps.googleusercontent.com"
                         buttonText="Iniciar sesion con google"
