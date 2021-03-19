@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import authActions from '../redux/actions/authActions'
+import Swal from 'sweetalert2'
 
 
 const SendEmail = ( props ) => {
@@ -13,7 +14,13 @@ const SendEmail = ( props ) => {
     const validateUser = async e => { // function that runs when you click the create user button
         e.preventDefault() //prevent reloading the page
         if(checkIfInputsAreEmpty){
-            alert ('Debes escribir un email valido!')
+            Swal.fire({
+                icon: 'error',
+                title: '¡CUIDADO!',
+                text: "No tienes permitido ingresar a la web",
+                showConfirmButton: false,
+                timer: 4000
+                })
             return true
         }
         setErrores([])
@@ -22,11 +29,15 @@ const SendEmail = ( props ) => {
         if(respuesta && !respuesta.success){
             setErrores(respuesta.errores.details)
         }else{
-            alert ("La solicitud de restablecimiento de contraseña fue generada con exito, chequea tu mail.")
+            Swal.fire({
+                icon: 'success',
+                title: '¡Listo!',
+                text: "Revisa tu mail por favor!",
+                showConfirmButton: false,
+                timer: 4000
+                })
         }
     }
-
-   
 
 
 return (

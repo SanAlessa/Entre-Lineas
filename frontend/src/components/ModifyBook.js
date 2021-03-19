@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import bookActions from '../redux/actions/bookActions'
 import {Spinner} from 'reactstrap'
+import Swal from'sweetalert2';
 
 const ModifyBook = (props) => {
   var namePage = props.match.params.id
@@ -13,12 +14,18 @@ const ModifyBook = (props) => {
 
   const deleteBook = async () => {
     await props.deleteBook(namePage)
+    Swal.fire({
+      icon: 'success',
+      title: 'Listo!',
+      text: "Tu libro ha sido eliminado",
+      showConfirmButton: false,
+      timer: 4000
+      })
     props.history.push("/userprofile")
   }
 
   return (
     <>
-
       {filtro.length === 0 ?
         <div className="cajaSpinner">
           <div className="cajitaSpinner">
@@ -46,7 +53,7 @@ const ModifyBook = (props) => {
               <div className="nineModify">
                 {filtro[0].chapters.map((chapter, index) => {
                   return (
-                    <Link to={`/modify-book/${filtro[0]._id}/${chapter._id}/${index}`}><button><p>{chapter.title}</p></button></Link>)
+                    <Link to={`/modify-book/${filtro[0]._id}/${chapter._id}/${index}`}><button ><p>{chapter.title}</p></button></Link>)
                 })}
               </div>
             </div>

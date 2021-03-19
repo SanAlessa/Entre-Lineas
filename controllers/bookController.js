@@ -18,7 +18,6 @@ const bookController = {
   },
   addChapter: (req, res) => {
     const {title, id} = req.body
-    console.log(req.body)
     Book.findOneAndUpdate({_id:id},
       {$addToSet: {chapters: {title:title}}},
       {new:true})
@@ -40,12 +39,11 @@ const bookController = {
     const {image} = req.files
     const pic = image.name.split('.')
     var url = `../booksimages/${req.user._id}${image.name}`
-    image.mv(`./frontend/public/booksimages/${req.user._id}${image.name}`, errores => {
-      if(errores) {
-        console.log(errores)
+    image.mv(`./client/build/booksimages/${req.user._id}${image.name}`, error => {
+      if(error) {
         return res.json({
           success: false,
-          errores:errores,
+          error,
           mensaje:'No se puede agregar la imagen en este momento. Intente mas tarde'
         })
       }
@@ -71,10 +69,11 @@ const bookController = {
   },
 
   modifyContent: async (req,res) => {
-    const {updatedContent, contentId, bookId} = req.body
+    const {updatedContent, contentId, chapterId, bookId} = req.body
     const book = await Book.findOne({_id:bookId})
-    const chapters = book.chapters.map(chapter=> chapter.chapter.filter(content=> content._id.toString()===contentId))
-    const content = chapters[0][0].content = updatedContent
+    const chapters = book.chapters.filter(chapter=> chapter._id.toString() === chapterId)
+    const chapter = chapters[0].chapter.filter(content=> content._id.toString()===contentId)
+    const content = chapter[0].content = updatedContent
     book.save()
     .then(response => res.json({success: true, response}))
     .catch(error => res.json({success: false, error}))
@@ -82,7 +81,6 @@ const bookController = {
 
   deleteContent: async (req,res) => {
     const {contentId, chapterId, bookId} = req.body
-    console.log(req.body)
     await Book.findOneAndUpdate({_id: bookId, 'chapters._id': chapterId},
       {$pull: {"chapters.$.chapter": {'_id':contentId}}},
       {new:true})
@@ -92,8 +90,6 @@ const bookController = {
 
   deleteBook: async (req,res)=>{
     const {id} = req.body
-    console.log(req.body)
-    console.log(id)
     await Book.findByIdAndRemove(id, {new:true})
     .then(response=> res.json({success: true, response}))
     .catch(error => res.json({success: false, error}))

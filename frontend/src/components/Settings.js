@@ -10,9 +10,9 @@ const Settings = (props) => {
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
   const [birthday, setBirthday] = useState('')
-  const [image, setImage] = useState('')
-  const [fileUrl, setFileUrl] = useState(null)
-
+  const [user, setUser] = useState({firstname:'', lastname:'', email:'', birthday:''})
+  const [fileUrl, setFileUrl] = useState('')
+  const [pathImage, setPathImage] = useState('')
 
   useEffect(()=>{
     if(!props.loggedUser){
@@ -24,30 +24,43 @@ const Settings = (props) => {
         showConfirmButton: false,
         timer: 4000
         })
-    }else{
-      setEmail(props.loggedUser.email)
-      setFirstname(props.loggedUser.firstname)
-      setLastname(props.loggedUser.lastname)
-      if(props.loggedUser.birthday) setBirthday(props.loggedUser.birthday.substr(-25, 10))
     }
   },[])
+
+  const readInput = (e) => {
+    var value = e.target.value
+    const prop = e.target.name
+    if (prop ==='image') value = e.target.files[0]
+    setUser({
+      ...user,
+      [prop]:value,
+    })
+  }
+  console.log(user)
 
   const edit = (e) => {
     e.preventDefault()
     setChange(!change)
   }
 
-  const processImage = () => {
-    const imagen= document.getElementById('image').files[0]
-    const foto = URL.createObjectURL(imagen)
-    setFileUrl(foto)
-  }
 
-  const fileReader = (e) => {
-    processImage()
-    setImage(e.target.value)
+  const onFileChange= e =>{
+    if(e.target.files && e.target.files.length > 0){
+        const file = e.target.files[0]
+        if(file.type.includes('image')){
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload= function load(){
+                setPathImage(reader.result)
+            }
+            setFileUrl(file)
+        }else{
+            console.log('tuvimos un error')
+        }
+        console.log(file)
+        console.log(fileUrl)
+    }
   }
-
   const alertError = (error) =>{
     Swal.fire({
         icon: 'error',
@@ -60,26 +73,21 @@ const Settings = (props) => {
 
   const send = e => {
     e.preventDefault()
-    const emailValue = document.getElementById('email').value
-    const firstnameValue= document.getElementById('firstname').value
-    const lastnameValue= document.getElementById('lastname').value
-    const birthdayValue= document.getElementById('birthday').value
-    const imageValue= document.getElementById('image').files[0]
     const formData = new FormData()
-
-    formData.append('email', emailValue.trim())
-    formData.append('firstname', firstnameValue.trim())
-    formData.append('lastname', lastnameValue.trim())
-    formData.append('birthday', birthdayValue)
-    formData.append('image', imageValue)
+    console.log(fileUrl)
+    formData.append('email', user.email.trim())
+    formData.append('firstname', user.firstname.trim())
+    formData.append('lastname', user.lastname.trim())
+    formData.append('birthday', user.birthday)
+    formData.append('image', fileUrl)
     formData.append('id', props.loggedUser.id)
-
+    console.log(fileUrl)
     var filesExtension = ['.jpg', '.png', '.jpeg']
 
-    if(emailValue==='' || firstnameValue=== '' || lastnameValue === ''){
+    if(user.email==='' || user.firstname=== '' || user.lastname === ''){
       const text = 'Verifique que todos los campos esten llenos'
       alertError(text)
-    }else if(imageValue && filesExtension.some(file=>imageValue.name.includes(file))){
+    }else if(fileUrl && filesExtension.some(file=>fileUrl.name.includes(file))){
       props.modifyUser(formData)
       Swal.fire({
         icon: 'success',
@@ -109,19 +117,19 @@ const Settings = (props) => {
           </div>
           <div className="line">
             <label htmlFor="email">Email</label>
-            <input type="text" name="email" id="email" value={email} disabled={!change ? true : false} onChange={(e)=>setEmail(e.target.value)} />
+            <input type="text" name="email" id="email" disabled={!change ? true : false} onChange={readInput} />
           </div>
           <div className="line">
             <label htmlFor="firstname">Nombre</label>
-            <input type="text" name="firstname" id="firstname" disabled={!change ? true : false} value={firstname} onChange={(e)=>setFirstname(e.target.value)} />
+            <input type="text" name="firstname" id="firstname" disabled={!change ? true : false}  onChange={readInput} />
           </div>
           <div className="line">
             <label htmlFor="lastname">Apellido</label>
-            <input type="text" name="lastname" id="lastname" disabled={!change ? true : false} value={lastname} onChange={(e)=>setLastname(e.target.value)} />
+            <input type="text" name="lastname" id="lastname" disabled={!change ? true : false}  onChange={readInput} />
           </div>
           <div className="line">
             <label htmlFor="birthday">Fecha de nacimiento</label>
-            <input type="date" name="birthday" id="birthday" disabled={!change ? true : false} value={birthday} onChange={(e)=>setBirthday(e.target.value)} />
+            <input type="date" name="birthday" id="birthday" disabled={!change ? true : false}  onChange={readInput} />
           </div>
           <div className="lineImgUser">
               <div className="selectImagPerfil" style={{cursor: 'pointer'}}>
@@ -130,13 +138,13 @@ const Settings = (props) => {
                   <h6 style={{cursor: 'pointer'}} >Click para seleccionar Imagen</h6>
                 </label>
               </div>
-            <input className="imagePort" type="file" name="image" id="image" value={image} onChange={fileReader}/>
+            <input className="imagePort" type="file" name="image" id="image" onChange={onFileChange}/>
           </div>
           <div className="line">
             <div className="buttonSettings" onClick={send}><span>Confirmar cambios</span></div>
           </div>
         </form>
-        <div className="userImage" style={{width: '20vw', height: '50vh', boxShadow: '0px 5px 5px rgba(0,0,0,0.2)', backgroundImage: `url('${fileUrl}')`}}>
+        <div className="userImage" style={{width: '20vw', height: '50vh', boxShadow: '0px 5px 5px rgba(0,0,0,0.2)', backgroundImage: `url('${pathImage}')`}}>
       </div>
     </div>
     </section>

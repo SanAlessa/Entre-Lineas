@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import authActions from '../redux/actions/authActions'
+import Swal from 'sweetalert2'
 
 const ForgotPassword = ( props ) => {
     const email = props.match.params.email
@@ -28,10 +29,23 @@ const ForgotPassword = ( props ) => {
             alert('las contraseñas no coinciden')
         }else{
             const respuesta = await props.newPassword(email, usuario.password)
+            console.log(respuesta)
             if(respuesta && !respuesta.success){
-                console.log(respuesta)
-            }else if(respuesta && respuesta.success){
-                alert ('Password almacenada con exito')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ups!',
+                    text: "Algo salio mal, intenta nuevamente!",
+                    showConfirmButton: false,
+                    timer: 4000
+                    })
+            }else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Genial!!',
+                    text: "Tu contraseña se restablecio correctamente!",
+                    showConfirmButton: false,
+                    timer: 4000
+                    })
             }
         }
     }

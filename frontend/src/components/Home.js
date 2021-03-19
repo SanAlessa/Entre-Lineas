@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <div className="backgroundZindex"></div>
-      <div className="sectionBox">
+      <div className="sectionBox ">
         <FirstSection />
         <SecondSection />
         <ThirdSection />

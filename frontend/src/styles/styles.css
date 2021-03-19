@@ -69,12 +69,7 @@ header a, footer a {
   cursor: pointer;
 }
 
-/* .headerLeft img.logo, .footerLeft img.logo {
-  height: 8.5vh;
-  margin: 0 3vw;
-  background-position: center;
-  background-size: cover;
-} */
+
 .headerLeft .prueba{
     width: 15vw;
     height: 10vh;
@@ -953,7 +948,6 @@ section.settings {
   }
   div.firstSection {
     height: 90vh;
-
   }
   h1.titleFirst {
     font-size: 40px;
@@ -1113,7 +1107,6 @@ section.settings {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 93%;
 }
 
 .register {
@@ -1203,8 +1196,8 @@ section.settings {
     justify-content: space-between;
     align-items: center;
     padding: 10vh;
-    background-color: rgb(255, 255, 255);
-    position: absolute ;
+    background-color: rgb(255, 255, 255) !important;
+    position: absolute !important;
     border: solid 2px rgb(83, 1, 150);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -1225,6 +1218,7 @@ section.settings {
       display: flex;
       align-items: center;
   }
+  
   .leftBoxFirst{
       margin-left: 4vw;
       width:35vw;
@@ -1234,14 +1228,19 @@ section.settings {
       justify-content: space-between;
       height: 70vh;
       position: relative;
-      z-index: 1;
       background-color: rgba(255, 255, 255, 0);
   }
+
   .titleFirst{
       color: rgb(103, 11, 139);
       font-weight: bold;
       font-size: 4vw;
       width: 25vw;
+  }
+
+  .buttonBox {
+      z-index: 100;
+      position: relative;
   }
   .boton2{
       margin-left: 2vw;
@@ -2585,6 +2584,7 @@ footer p {
     border: solid 1px rgb(103, 11, 139);
     box-shadow: 0 12px 10px 0 rgba(0,0,0,0.5),0 17px 25px 0 rgba(0, 0, 0, 0.5);
     margin-right: 8vh;
+    margin-top: 4vw;
 }
 
 .stars{
@@ -2863,7 +2863,7 @@ footer p {
 
 .containerComment {
     width: 30vw;
-    margin-left: 5vh;
+    margin-left: 3vh;
 }
 
 .comments-storyDescription{
@@ -2919,9 +2919,17 @@ border-radius: 30px;
 .contentComment p{
     padding: 1vh 2vh;
 }
+.botonesEditAndBorrar{
+    display: flex;
 
+}
 .botonesEditAndBorrar button {
     margin-left: 1vh;
+}
+.botonesEditAndBorrar input {
+    border: none;
+    width: 18vw;
+    border-bottom: solid 1px  rgb(103, 11, 139);
 }
 
 .d-flex{

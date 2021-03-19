@@ -49,8 +49,10 @@ const userController = {
         const {id, email, firstname, lastname, birthday} = req.body
         const {image} = req.files
         const pic = image.name.split('.')
-        const url = `../assets/${id}.${pic[1]}`
-        image.mv(`./frontend/public/assets/${id}.${pic[1]}`, errores=> {
+        const url = `userimages/${id}.${pic[1]}`
+        console.log(req)
+        console.log(req.files)
+        image.mv(`./client/build/userimages/${id}.${pic[1]}`, errores=> {
         if(errores) {
             return res.json({
                 success: false,

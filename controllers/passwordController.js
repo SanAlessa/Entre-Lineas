@@ -26,12 +26,9 @@ var transport = nodemailer.createTransport({
     }
 
     const content = 
-    `<div style="width: 100px; height: 100px; 
-    background-image: url('../frontend/public/assets/logo.jpg');
-    background-size: cover; background-position: center;"></div>
-    <h3>Este email se ha enviado por una solicitud para restablecer la contraseña en la pagina Entre Lineas, si usted no lo solicio
+    `<h3>Este email se ha enviado por una solicitud para restablecer la contraseña en la pagina Entre Lineas, si usted no lo solicio
     por favor ignore este correo, de lo contrario haga click en el boton de abajo</h3>
-    <button><a href="http://localhost:3000/reset-password/${email}">¡Recupera tu contraseña!</a></button>`
+    <button><a href="https://entrelineas.herokuapp.com/reset-password/${email}">¡Recupera tu contraseña!</a></button>`
     var mailOptions = {
         from: 'Entre Lineas <entrelineasmh@gmail.com>',
         to: email,

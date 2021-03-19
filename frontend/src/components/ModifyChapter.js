@@ -19,14 +19,14 @@ const ModifyChapter = (props) => {
   useEffect(()=>{
     if(filtro.length>0){
     setTitle(filtro[0].chapters[indexPage].title)}
-  },[filtro])
+  },[filtro.length])
 
 
   const sendTitle=async ()=>{
     setContinuar(!continuar)
     props.modifyChapterTitle(title, id, chapterId, props.loggedUser.token)
   }
-  
+  console.log(title)
   return (
     <>
     {filtro.length === 0 ?
@@ -36,7 +36,7 @@ const ModifyChapter = (props) => {
           </div>
         </div>
         :
-    <section className="chapter">
+      <section className="chapter">
       <div className="imag-form-chapter"></div>
       <div className="frase-form">
         <div className="frase-chapter">
@@ -46,7 +46,7 @@ const ModifyChapter = (props) => {
           <div className='capitulo' style={{display:'flex',flexDirection:'column',alignItems:'center',marginTop:'2vh'}}>
             <h3>{newChapter ? 'Agregar el nombre de tu nuevo capítulo' : 'Modificar título del capítulo'}</h3>
             <div className="line">
-              <input className="input-chapter" type="text" name="title" id="title" disabled={continuar && true} placeholder="Capitulo" value={title} onChange={(e)=>setTitle(e.target.value)} />
+              <input className="input-chapter" type="text" name="title" id="title"  placeholder="Capitulo" value={title} onChange={(e)=>setTitle(e.target.value)} />
             </div>
             {!continuar && <button className="buttonNewChapter" onClick={sendTitle}>Listo!</button>}
           </div>

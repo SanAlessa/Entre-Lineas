@@ -1,10 +1,12 @@
 import axios from 'axios'
+import Swal from 'sweetalert2'
+import {API} from '../../Api'
 
 const voteActions = {
   vote: (id, token) => {
     return async (dispatch, getState) => {
       try {
-        const response = await axios.post('http://localhost:4000/api/vote', {id}, {
+        const response = await axios.post(`${API}vote`, {id}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -24,17 +26,15 @@ const voteActions = {
   dismissVote: (id, token) => {
     return async (dispatch, getState) => {
       try {
-        const response = await axios.post('http://localhost:4000/api/dismissvote', {id}, {
+        const response = await axios.post(`${API}dismissvote`, {id}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
-        console.log(response)
         dispatch({type: 'DISMISS_VOTE', payload: response.data})
       }catch(error){
         Swal.fire({
           icon: 'error',
-          title: '¡Error!',
           title: '¡Lo siento!',
           text: "No se puede sacar el voto en este momento, intente mas tarde.",
           showConfirmButton: false,
