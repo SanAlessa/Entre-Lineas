@@ -73,22 +73,6 @@ const SignIn =(props) => {
     }
 }
 
-const responseFacebook = async (response) => {
-    if(response.error){
-        const text = 'Algo salio mal con tu cuenta de Fcaebook, vuelve a intentar!'
-        alertError(text)
-    }else{
-        const respuesta = await props.logInUser({
-            email: response.email,
-            password:response.id
-        })
-    if(respuesta && !respuesta.success){
-        alertError(respuesta.mensaje)
-    }else{
-        alertSuccess()
-        }
-    }
-}
 
     return (
 <div className="containerLogin">
@@ -99,7 +83,7 @@ const responseFacebook = async (response) => {
                         <input className="inputRegister" type="text" name="email" placeholder="Nombre de Usuario" onChange={readInput}/>
                         <div className="a">
                             <input className="inputRegisterPassword" type={visible ? "text" : "password"} name="password" placeholder="Contraseña" onChange={readInput}/>
-                            <div className='ojito'><i class={visible ? "far fa-eye-slash" : "far fa-eye"} onClick={()=>setVisible(!visible)}></i></div>
+                            <div className='ojito'><i className={visible ? "far fa-eye-slash" : "far fa-eye"} onClick={()=>setVisible(!visible)}></i></div>
                         </div>
                     <button className="botonRegister" onClick={validateUser} >Iniciar sesion</button>
                     <GoogleLogin
@@ -108,15 +92,6 @@ const responseFacebook = async (response) => {
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
-                    />
-                    <FacebookLogin
-                        appId="781019919514137"
-                        autoLoad={false}
-                        fields="name,email,picture"
-                        callback={responseFacebook}
-                        textButton="Iniciar sesion con Facebook"
-                        icon="fa-facebook"
-                        cssClass="iconoFacebook"
                     />
                 </div>
             </div>

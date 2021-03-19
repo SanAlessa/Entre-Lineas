@@ -17,7 +17,7 @@ const Header = (props) => {
   return (
     <header>
       <div className="headerLeft">
-        <Link to="/"><img src={'../assets/Logo-EntreLineas-Pluma-inclinada.png'} className="logo" alt='logo Entre Líneas'></img></Link>
+      <Link to="/"><div className="prueba"></div></Link>{/* <Link to="/"><img src={'../assets/Logo-EntreLineas-Pluma-inclinada.png'} style={{marginLeft: '-8vw'}} className="logo" alt='logo Entre Líneas'></img></Link> */}
         <div className="dropdown">
           <p>Navegar</p>
           <div className="dropdown-content">
@@ -33,15 +33,14 @@ const Header = (props) => {
       </div></Link>
       {props.loggedUser && !props.loggedUser.image ?
         <div className="headerRight">
-          <h4>Hola! {(props.loggedUser.firstname).toUpperCase()}</h4>
+          <p>Hola! {(props.loggedUser.firstname).toUpperCase()}</p>
           <div className='containerDrop' onClick={() => setVisible(!visible)}>
             {visible &&
               <div className='dropDownMenu'>
                 <ul>
                   <Link to='/userprofile'><li>Mi Perfil</li></Link>
-                  <Link to='/settings'><li>Configuración</li></Link>
                   <Link to='/add-book'><li>Crear un Nuevo Libro</li></Link>
-                  <Link to='/modify-book/:id'><li>Modificar Libro</li></Link>
+                  <Link to='/settings'><li>Configuración</li></Link>
                   <Link to='/' onClick={props.logout}><li>Cerrar mi Sesión</li></Link>
                 </ul>
               </div>
@@ -54,15 +53,14 @@ const Header = (props) => {
         : props.loggedUser && props.loggedUser.image
         ?<>
         <div className="headerRight" >
-          <h4>Hola! {(props.loggedUser.firstname).toUpperCase()}</h4>
+          <p>Hola! {(props.loggedUser.firstname).toUpperCase()}</p>
           <div className='containerDrop' onClick={() => setVisible(!visible)}>
             {visible &&
               <div className='dropDownMenu'>
                 <ul>
                   <Link to='/userprofile'><li>Mi Perfil</li></Link>
-                  <Link to='/settings'><li>Configuración</li></Link>
                   <Link to='/add-book'><li>Crear un Nuevo Libro</li></Link>
-                  <Link to='/modify-book/:id'><li>Modificar Libro</li></Link>
+                  <Link to='/settings'><li>Configuración</li></Link>
                   <Link to='/' onClick={props.logout}><li>Cerrar mi Sesión</li></Link>
                 </ul>
               </div>

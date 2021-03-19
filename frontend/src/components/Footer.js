@@ -5,22 +5,24 @@ const Footer = () => {
   return (
     <footer>
       <div className="footerLeft">
-        <Link to="/"><img src={'../assets/Logo-EntreLineas-Pluma-inclinada.png'} className="logo" alt='logo Entre Líneas'></img></Link>
+      <Link to="/"><div className="prueba"></div></Link>{/* <Link to="/"><img src={'../assets/Logo-EntreLineas-Pluma-inclinada.png'} className="logo" alt='logo Entre Líneas'></img></Link> */}
       </div>
-      <p>© 2020 Entre Líneas.</p>
       <div className="footerRight">
-        <a href="https://www.facebook.com/">
-          <img src={'../assets/socialNetworks/facebook.png'} alt='Entre Líneas Facebook'></img>
-        </a>
-        <a href="https://twitter.com/">
-          <img src={'../assets/socialNetworks/twitter.png'} alt='Entre Líneas Twitter'></img>
-        </a>
-        <a href="https://www.instagram.com/">
-          <img src={'../assets/socialNetworks/instagram.png'} alt='Entre Líneas Instagram'></img>
-        </a>
-        <a href="https://www.youtube.com/">
-          <img src={'../assets/socialNetworks/youtube.png'} alt='Entre Líneas Youtube'></img>
-        </a>
+        <p>© 2020 Entre Líneas.</p>
+        <div className="socialNetworks">
+          <a href="https://www.facebook.com/">
+            <i className="fab fa-facebook-f" style={{ color: "#3b5998" }}></i>
+          </a>
+          <a href="https://twitter.com/">
+            <i className="fab fa-twitter" style={{ color: "#00acee" }}></i>
+          </a>
+          <a href="https://www.instagram.com/">
+            <i className="fab fa-instagram" style={{ color: "black" }}></i>
+          </a>
+          <a href="https://www.youtube.com/">
+            <i className="fab fa-youtube" style={{ color: "#c4302b" }}></i>
+          </a>
+        </div>
       </div>
     </footer>
   )

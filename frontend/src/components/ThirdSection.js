@@ -13,7 +13,7 @@ const  ThirdSection = ()=>{
                                 <p>1</p>
                             </div>
                             <div className='textSecondContThird'>
-                                <p className='titleTextSecContTh'>Crear</p>
+                                <p className='titleTextSecContTh'>Crea</p>
                                 <p className='bodyTxtSecContTh'>Comparte tu voz única e historia original en Entre Lineas. Encuentra los recursos de escritura que necesitas para elaborar una historia.</p>
                             </div>
                         </div>
@@ -31,7 +31,7 @@ const  ThirdSection = ()=>{
                                 <p>3</p>
                             </div>
                             <div className='textSecondContThird'>
-                                <p className='titleTextSecContTh'>Ampliar</p>
+                                <p className='titleTextSecContTh'>Amplía</p>
                                 <p className='bodyTxtSecContTh'>¡Obtén el estatus de estrella de Entre Lineass y tu historia publicada o adaptada en cine o televisión con Entre Lineas Studios</p>
                             </div>
                         </div>
@@ -43,8 +43,7 @@ const  ThirdSection = ()=>{
                         Recursos para la escritura</p>
                     </div>
                     <div className='readers'>
-                        <p>90 millón
-                        Lectores</p>
+                        <p>90 millones de Lectores</p>
                     </div>
                     <div className='offers'>
                         <p>1000 +

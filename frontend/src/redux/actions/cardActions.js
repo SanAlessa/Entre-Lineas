@@ -12,13 +12,13 @@ const cardActions = {
                     }
                 )
             }catch(err){
-                // Swal.fire({
-                //     icon: 'error',
-                //     title: '¡Error!',
-                //     text: "Algo salio mal. intente mas tarde.",
-                //     showConfirmButton: false,
-                //     timer: 4000
-                // })
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "Algo salio mal. intente mas tarde.",
+                    showConfirmButton: false,
+                    timer: 4000
+                })
             }
         }
     }

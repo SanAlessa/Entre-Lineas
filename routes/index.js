@@ -37,6 +37,9 @@ router.route('/book')
 router.route('/book/:genre')
 .get(bookController.getByGenre)
 
+router.route('/book/delete')
+.put(bookController.deleteBook)
+
 
 router.route('/book/addChapter')
 .post(passport.authenticate('jwt', {session: false}),bookController.addChapter)

@@ -13,7 +13,7 @@ const SecondSection = ()=>{
                     </div>
                     <div className='verContainer'>
                         <i className="fas fa-film"></i>
-                        <p>Consigue que tu historia se adapte como Serie de Televisión</p>
+                        <p className="block">Consigue que tu historia se adapte como Serie de Televisión</p>
                     </div>
                     <div className='verContainer'>
                         <i className="fas fa-book"></i>

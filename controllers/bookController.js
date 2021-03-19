@@ -38,9 +38,9 @@ const bookController = {
   addImage: (req, res) => {
     const {id} = req.body
     const {image} = req.files
-    // const pic = image.name.split('.')
-    const url = `../booksimages/${req.user._id}${image.name.trim()}`
-    image.mv(`./frontend/public/booksimages/${req.user._id}${image.name.trim()}`, errores => {
+    const pic = image.name.split('.')
+    var url = `../booksimages/${req.user._id}${image.name}`
+    image.mv(`./frontend/public/booksimages/${req.user._id}${image.name}`, errores => {
       if(errores) {
         console.log(errores)
         return res.json({
@@ -61,34 +61,43 @@ const bookController = {
     }))
   },
 
-  modifyTitle: (req,res) => {
-    const {title, chapterId} = req.body
-    console.log(req.body)
-    Book.findOneAndUpdate({'chapters._id':chapterId},
-      {$set: {chapters: {title}}},
-      {new:true})
-    .then(response => res.json({success: true, response}))
-    .catch(error => res.json({success: false, error}))
-  },
-  modifyContent: (req,res) => {
-    const {updatedContent, contentId, chapterId, bookId} = req.body
-    console.log(req.body)
-    Book.findOneAndUpdate({_id:bookId, 'chapters._id':chapterId, 'chapter._id':contentId},
-    {$set: {'chapters.$.chapter':[{content: updatedContent}]}},
-    {new: true})
-    .then(response => res.json({success: true, response}))
-    .catch(error => res.json({success: false, error}))
-  },
-  deleteContent: (req,res) => {
-    const {contentId, chapterId, bookId} = req.body
-    console.log(req.body)
-    Book.findOneAndUpdate({'chapters._id': chapterId},
-      {$pull: {chapters: {'chapter._id':}}},
+  modifyTitle: async (req,res) => {
+    const {title, id, chapterId} = req.body
+    await Book.findOneAndUpdate({_id: id, 'chapters._id': chapterId},
+      {$set: {'chapters.$.title' : title}},
       {new:true})
     .then(response => res.json({success: true, response}))
     .catch(error => res.json({success: false, error}))
   },
 
+  modifyContent: async (req,res) => {
+    const {updatedContent, contentId, bookId} = req.body
+    const book = await Book.findOne({_id:bookId})
+    const chapters = book.chapters.map(chapter=> chapter.chapter.filter(content=> content._id.toString()===contentId))
+    const content = chapters[0][0].content = updatedContent
+    book.save()
+    .then(response => res.json({success: true, response}))
+    .catch(error => res.json({success: false, error}))
+  },
+
+  deleteContent: async (req,res) => {
+    const {contentId, chapterId, bookId} = req.body
+    console.log(req.body)
+    await Book.findOneAndUpdate({_id: bookId, 'chapters._id': chapterId},
+      {$pull: {"chapters.$.chapter": {'_id':contentId}}},
+      {new:true})
+    .then(response => res.json({success: true, response}))
+    .catch(error => res.json({success: false, error}))
+  },
+
+  deleteBook: async (req,res)=>{
+    const {id} = req.body
+    console.log(req.body)
+    console.log(id)
+    await Book.findByIdAndRemove(id, {new:true})
+    .then(response=> res.json({success: true, response}))
+    .catch(error => res.json({success: false, error}))
+  },
 
   getBooks: (req,res) => {
     Book.find().populate('user')

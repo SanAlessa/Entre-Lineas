@@ -14,7 +14,6 @@ const bookActions = {
 
         dispatch({type: 'ADD_BOOK', payload:response.data.response});
 
-        console.log(response.data.response);
       } catch(error) {
         Swal.fire({
           icon: 'error',
@@ -37,7 +36,6 @@ const bookActions = {
           }
         })
         dispatch({type: 'ADD_BOOK', payload:response.data.response})
-        console.log(response.data)
       }catch(error){
         Swal.fire({
           icon: 'error',
@@ -115,7 +113,6 @@ const bookActions = {
           }
         })
         dispatch({type: 'ADD_CHAPTER', payload: response.data.response})
-        console.log(response.data)
       }catch(error){
         console.log(error)
       }
@@ -131,22 +128,20 @@ const bookActions = {
           }
         })
         dispatch({type: 'CHAPTER_CONTENT', payload: response.data.response})
-        console.log(response.data.response.chapters)
       }catch(error){
         console.log(error)
       }
     }
   },
 
-  modifyChapterTitle:(title, chapterId, token) =>{
+  modifyChapterTitle:(title, id, chapterId, token) =>{
     return async(dispatch) => {
       try {
-        const response = await axios.post('http://localhost:4000/api/book/modifyChapterTitle', {title, chapterId}, {
+        const response = await axios.post('http://localhost:4000/api/book/modifyChapterTitle', {title, id, chapterId}, {
           headers: {
             Authorization : `Bearer ${token}`
           }
         })
-        console.log(response.data)
       }catch(errpr){
         Swal.fire({
           icon: 'error',
@@ -160,7 +155,6 @@ const bookActions = {
     }
   },
   modifyContent: (updatedContent, contentId, chapterId, bookId, token) => {
-    console.log(chapterId)
     return async (dispatch, getState) => {
       try {
         const response = await axios.post('http://localhost:4000/api/book/modifyChapter', {updatedContent, contentId, chapterId, bookId}, {
@@ -169,7 +163,6 @@ const bookActions = {
           }
         })
         dispatch({type: 'UPDATE_BOOK', payload: response.data.response})
-        console.log(response.data)
       }catch(error){
         Swal.fire({
           icon: 'error',
@@ -185,13 +178,12 @@ const bookActions = {
   deleteContent:(contentId, chapterId, bookId, token) => {
     return async (dispatch, getState) => {
       try {
-        const response = await axios.put('http://localhost:4000/api/book/modifyChapter', {contentId, bookId}, {
+        const response = await axios.put('http://localhost:4000/api/book/modifyChapter', {contentId, chapterId, bookId}, {
           headers: {
             Authorization : `Bearer ${token}`
           }
         })
         dispatch({type: 'UPDATE_BOOK', payload: response.data.response})
-        console.log(response.data)
       }catch(error){
         Swal.fire({
           icon: 'error',
@@ -201,6 +193,21 @@ const bookActions = {
           showConfirmButton: false,
           timer: 4000
           })}
+    }
+  },
+  deleteBook:(id)=>{
+    console.log(id)
+    return async (dispatch)=>{
+      try {
+        const response = await axios.put('http://localhost:4000/api/book/delete', {id})
+      }catch(error){
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: "Algo salio mal. intente mas tarde.",
+          showConfirmButton: false,
+          timer: 4000
+        })}
     }
   },
 
@@ -213,7 +220,6 @@ const bookActions = {
           }
       })
         dispatch({type: 'ADD_COMMENTS', payload: res.data.respuesta})
-        console.log(res.data)
       } catch(error){
         Swal.fire({
           icon: 'error',
@@ -255,7 +261,6 @@ const bookActions = {
           }
       })
         dispatch({type: 'ADD_COMMENTS', payload: res.data.respuesta})
-        console.log(res)
       } catch(error){
         Swal.fire({
           icon: 'error',
@@ -277,7 +282,6 @@ const bookActions = {
           }
         })
         dispatch({type: 'VOTE', payload: res.data})
-        console.log(res.data)
       } catch(error){
         Swal.fire({
           icon: 'error',
@@ -298,7 +302,6 @@ const bookActions = {
           }
         })
         dispatch({type: 'DIS_VOTE', payload: res.data})
-        console.log(res.data)
       } catch(error){
         Swal.fire({
           icon: 'error',
@@ -316,7 +319,6 @@ const bookActions = {
       try {
         const response = await axios.post('http://localhost:4000/api/views', {id})
         dispatch({type: 'VIEWS', payload: response.data})
-        console.log(response.data.response)
       }catch(error){
         Swal.fire({
           icon: 'error',

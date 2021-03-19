@@ -3,10 +3,9 @@ import Settings from './Settings'
 import { connect } from 'react-redux'
 import {useState} from 'react'
 import MyBooks from './MyBooks'
+import authActions from '../redux/actions/authActions'
 
 const UserProfile = (props) => {
-    console.log(props)
-    console.log(props.loggedUser)
     var myBooks = props.books.filter(book => book.user._id === props.loggedUser.id)
     var booksLiked = props.books.filter(book => book.stars.includes(props.loggedUser.id))
     const [visible, setVisible]=useState(true)
@@ -35,7 +34,6 @@ const UserProfile = (props) => {
                                 <div className='dataInformationProfileUserFixed'><p>{props.loggedUser.firstname} {props.loggedUser.lastname}</p></div>
                             </div>
                             <div className='informationProfileUserFixed'>
-                                
                                 {props.loggedUser.birthday
                                 ?
                                 <>
@@ -60,23 +58,23 @@ const UserProfile = (props) => {
                             </div>
                             </div>
                             <div className='buttonLogout'>
-                            <Link to='/' onClick={props.logout}><button>Cerrar mi sesión</button></Link>
+                            <Link to='/' onClick={props.logOut}><button>Cerrar mi sesión</button></Link>
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <div className='containerContentOptions'>
-                    <h2 className='titleProfile'>Mi Perfil en Entre Líneas   </h2>
+                    <h2 className='titleProfile'>Mi Perfil</h2>
                     <div className='containerNavMenu'>
                         <Link ><div onClick={()=>setVisible(true)} className='optionMenu'>Mis Libros</div></Link>
                         <Link ><div onClick={()=>setVisible(false)} className='optionMenu savedBooks'>Mi Biblioteca</div></Link>
                     </div>
                     <div className='containerViewComponentOption'>
                     <div className='booksBoxUserProf'>
-                            {visible ? myBooks.length === 0 ? <h1>Todavia no creaste ningún libro!</h1> : myBooks.map(book => <MyBooks libro={book}/>): 
-                            booksLiked.length === 0 ? <h1>Todavia no te gusto ningun libro!</h1>: booksLiked.map(book=> <MyBooks libro={book}/>)}    
-                        </div>
+                            {visible ? myBooks.length === 0 ? <h1 style={{textAlign:'center'}}>Todavía no tienes libros creados. Comienza a escribir tus historias</h1> : myBooks.map(book => <MyBooks libro={book}/>): 
+                            booksLiked.length === 0 ? <h1 style={{textAlign:'center'}}>Todavia no te gusto ningun libro!</h1>: booksLiked.map(book=> <MyBooks libro={book}/>)}    
+                     </div>   
                     </div>
                 </div>
             </div>
@@ -87,7 +85,12 @@ const UserProfile = (props) => {
 const mapStateToProps = state => {
     return {
     books: state.bookR.books,
-      loggedUser: state.auth.loggedUser
+    loggedUser: state.auth.loggedUser
     }
 }
-export default connect(mapStateToProps)(UserProfile)
+
+const mapDispatchToProps = {
+    logOut: authActions.logOutUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)

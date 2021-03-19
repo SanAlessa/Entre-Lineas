@@ -29,6 +29,9 @@ header, footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+  z-index: 100;
+  background-color: white;
 }
   
 header *, footer * {
@@ -40,6 +43,16 @@ header *, footer * {
   display: flex;
   align-items: center;
 }
+
+footer div.footerLeft {
+  width: 33vw;
+}
+footer .footerRight {
+  width: 66vw;
+  padding-left: 9vw;
+  justify-content: space-between;
+}
+
 .containerDrop {
     display: flex;
     align-items: center;
@@ -56,11 +69,33 @@ header a, footer a {
   cursor: pointer;
 }
 
-.headerLeft img.logo, .footerLeft img.logo {
-  width: 15vw;
-  margin: 0 3vw 0 0;
+/* .headerLeft img.logo, .footerLeft img.logo {
+  height: 8.5vh;
+  margin: 0 3vw;
   background-position: center;
   background-size: cover;
+} */
+.headerLeft .prueba{
+    width: 15vw;
+    height: 10vh;
+    margin: 0 3vw 0 0;
+    background-image: url("../assets/logoHeader.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .footerLeft{
+      width: 15vw;
+      height: 10vh;
+      margin: 0 3vw 0 0;
+      background-image: url("../assets/logoHeader.png");
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+  }
+
+.socialNetworks {
+  margin: 0 3vw;
 }
 
 header p {
@@ -70,8 +105,8 @@ header p {
   cursor: pointer;
 }
 
-header p, header i, footer p {
-  font-size: 1.4vw;
+header p, header i, footer i, footer p {
+  font-size: 22px;
 }
 
 header div.toSearch:hover, header p:hover, header a:hover {
@@ -129,13 +164,15 @@ div.dropdown-content {
   background-size: cover;
 }
 
-.footerRight a img {
-  width: 2.2vw;
-  margin: 0 0 0 0.5vw;
-  border-radius: 50%;
+.footerRight a i {
+  margin-right: 12px;
 }
 
-/* Styles ngngs user (Juanca) */
+.footerRight a i:hover {
+  transform: scale(1.1);
+}
+
+/* Styles user (Juanca) */
 section.settings {
   min-height: 79.5vh;
   display: flex;
@@ -150,8 +187,6 @@ section.settings {
   justify-content: center;
   align-items: center;
   width: 50vw;
-  /* margin: 0 10vw 0 0; */
-  /* margin: auto; */
 }
 
 .form-settings label  {
@@ -174,8 +209,41 @@ section.settings {
   align-items: center;
 }
 
+/* Corrección backgroundImage Home (Juanca)*/
+.backgroundZindex {
+  height: 100vh;
+  width: 100vw;
+  position: aboslute;
+  z-index: 99;
+  position:fixed;
+  background-image: url("../assets/fotoHome2Trans.png");
+  background-size: cover;
+  background-position:right;      
+}
+
+.sectionBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fourthSection {
+  position: relative;
+  z-index: 100;
+}
+
 /* Responsividad (Juanca) */
 @media (max-width: 992px) {
+  /* Header y Footer*/
+  header p, header i, footer i, footer p {
+    font-size: 18px;
+  }
+
+  /* Home */
+  div.backgroundZindex {
+    background-image: url("../assets/fotoHome2Trans50p.png");
+  }
   div.firstSection {
     height: 100vh;
     flex-direction: column;
@@ -198,8 +266,7 @@ section.settings {
     align-items: center;
     margin: 3vh 0;
     text-align: center;
-    min-width: 450px;
-    min-height: 200px;
+    width: 500px;
   }
 
   div.leftBoxFirst * {
@@ -225,6 +292,7 @@ section.settings {
 
   div.leftBoxFirst button.btn.btn-danger{
     width: 30vw;
+    min-width: 180px;
   }
 
   div.secondSection {
@@ -273,7 +341,6 @@ section.settings {
 
   div.imgBoxSecond {
     height: 40vh;
-    /* width: 30vw; */
     background-position: center;
   }
 
@@ -294,7 +361,7 @@ section.settings {
   }
 
   div.upContainerThird {
-    height: 55vh;
+    height: 85vh;
   }
   p.subTitleThirdSec {
     width: 80vw;
@@ -325,14 +392,13 @@ section.settings {
     width: 32vw;
   }
   p.bodyTxtSecContTh {
-    /* width: 20vw; */
     font-size: 15px;
     width: 100%;
   }
 
   div.imgThirdSec {
     width: 95vw;
-    height: 30vh;
+    height: 15vh;
   }
   
   div.imgThirdSec div {
@@ -369,6 +435,7 @@ section.settings {
 
   p.fourthBody {
     font-size: 20px;
+    margin: 0 1vw;
   }
 
   div.fourthSecButtons {
@@ -376,7 +443,7 @@ section.settings {
     justify-content: center;
   }
 
-  div.fourthSecButtons *{
+  div.fourthSecButtons * {
     margin: 0 3vw;
   }
 
@@ -386,13 +453,628 @@ section.settings {
     height: 60vh;
     background-size: contain;
   }
-  
+  div.fourthSection {
+    height: 74vh;
+    background-position: 70%;
+  }
+  div.upContainerFourth {
+    height: 40vh;
+    margin-top: 4vh;
+  }
+  div.fourthSecText {
+    margin: 2vw;
+  }
+  div.fourthSecText p.fourthTitle {
+    font-size: 40px;
+    margin: 4vh 0 4vh 0;
+  }
+  div.fourthSecText p.fourthBody {
+    font-size: 30px;
+    margin-bottom: 5vh;
+  }
 }
+/* Responsive FT - Search*/
+@media (max-width: 992px) {
+    header{
+        height: 15vh;
+    }
+    .headerLeft img.logo, .footerLeft img.logo{
+        width: 20vw;
+    }
+    header p, header i, footer p{
+        font-size: 2.25vw;
+    }
+    div.containerSearchBar{
+        height: 11vh;
+    }
+    input.inputSearchStories{
+        font-size: 3.5vw;
+        transition: 750ms ease
+    }
+    div.containerTitleSearch h1{
+        font-size: 4.8vw;
+    }
+    div.cardCategory {
+        width: 32vw;
+        height: 18vw;
+    }
+    div.nameCategory{
+        font-size: 3.5vw;
+    }
+    div.containerLogoCategory{
+        width: 50%;
+    }
+    div.logoCategory{
+        width: 11vw;
+        height: 11vw;
+    }
+    div.storyContainer{
+        width: 45%;
+        height: 55vh;
+        padding: 0.5vw;
+        margin: 0 0 1vw 1vw
+    }
+    div.storyPic{
+        width: 55%;
+        height: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    div.storyBodyContainer {
+        width: 45%;
+        align-items: flex-start
+    }
+    p.storyTitle, p.storyUser, p.storyGenre{
+        font-size: 2.5vw;
+    }
+    div.storyIcons{
+        width: 100%;
+    }
+    p.storyDescription{
+        font-size: 1.6vw
+    }
+    div.storyContainer{
+        width: 45%;
+        height: 55vh;
+        padding: 0.5vw;
+        margin: 0 0 1vw 1vw
+    }
+    div.storyPic{
+        width: 50%;
+        height: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    div.storyBodyContainer {
+        width: 50%;
+        align-items: flex-start
+    }
+    div.storyIcons{
+        width: 100%;
+    }
+    div.photoEditProfile{
+        width: 100%;
+        justify-content: flex-start;
+        height: 45vh;
+    }
+    div.photoUser{
+        width: 20vw;
+        height: 20vw;
+    }
+    div.buttonEditProfile{
+        width: 70%;
+        font-size: 1.5vw;
+        margin-top: 3vh;
+    }
+    div.informationProfileUserBlock{
+        height: 22vh;
+        padding: 0.5vw;
+    }
+    div.informationProfileUserFixed{
+        margin: 0
+    }
+    div.informationProfileUserFixed p, div.informationProfileUserFixed i{
+        font-size: 1.8vw;
+    }
+    div.informationProfileUserFixed p{
+        margin-bottom: 1vh;
+    }
+    div.buttonLogout button{
+        font-size: 1.5vw;
+        padding: 0.5vw;
+    }
+    div.containerContentOptions h2{
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        font-size: 6vw;
+    }
+    div.containerNavMenu{
+        height: 6vh;
+    }
+    div.optionMenu{
+        font-size: 4.5vw;
+    }    
+    div.dropDownMenu{
+        width: 18vw;
+        font-size: 1.5vw;
+        top: 11.5vh;
+        left: 82vw;
+    }
+    div.containerViewComponentOption{
+        width: 100%;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+    div.storyContainerProfile{
+        width: 37%;
+        height: 36vw;
+        margin: 0 0 2vw 2vw;
+    }
+    p.storyTitle{
+        font-size: 2vw;
+    }
+    p.storyUserProfile, p.storyGenreProfile {
+        font-size: 1.3vw;
+    }
+    div.storyButtons{
+        width: 100%
+    }
+    div.storyButtons button{
+        font-size: 2vw;
+    }
+    div.storyIconsProfile{
+        height: 35%;
+    }
+    div.storyIconsProfile p{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 1.6vw;
+    }
+
+}
+/* Responsive FT - Search*/
 @media (max-width: 600px) {
-  
+    header{
+        height: 10vh;
+    }
+    div.iconSearchStories{
+        width: 10%;
+    }
+    div.containerSearchBar{
+        height: 6vh;
+    }
+    div.containerTitleSearch{
+        height: 6vh;
+        margin-top: 1vh;
+    }
+    div.containerTitleSearch h1{
+        font-size: 6vw;
+    }
+    div.cardCategory {
+        width: 40vw;
+        height: 22vw;
+    }
+    div.containerLogoCategory{
+        width: 65%;
+    }
+    div.logoCategory{
+        width: 15vw;
+        height: 15vw;
+    }
+    div.nameCategory{
+        font-size: 4.5vw;
+    }
+    div.storyContainer{
+        width: 45%;
+        height: 55vh;
+        padding: 0.5vw;
+        margin: 0 0 1vw 1vw
+    }
+    div.storyPic{
+        width: 55%;
+        height: 60%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    div.storyBodyContainer {
+        width: 45%;
+        align-items: flex-start
+    }
+    p.storyTitle, p.storyUser, p.storyGenre{
+        font-size: 2.5vw;
+    }
+    div.storyIcons{
+        width: 100%;
+    }
+    p.storyDescription{
+        font-size: 2vw
+    }
+    
+    div.storyContainer{
+        width: 45%;
+        height: 55vh;
+        padding: 0.5vw;
+        margin: 0 0 1vw 1vw
+    }
+    div.storyPic{
+        width: 50%;
+        height: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    div.storyBodyContainer {
+        width: 50%;
+        align-items: flex-start
+    }
+    div.storyIcons{
+        width: 100%;
+    }
+    div.photoEditProfile{
+        width: 100%;
+        justify-content: flex-start;
+        height: 33vh;
+    }
+    div.photoUser{
+        width: 20vw;
+        height: 20vw;
+    }
+    div.buttonEditProfile{
+        width: 100%;
+        font-size: 3vw;
+        margin-top: 3vh;
+    }
+    div.informationProfileUserBlock{
+        height: 30vh;
+    }
+    div.informationProfileUserFixed{
+        margin: 0
+    }
+    div.informationProfileUserFixed{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div.informationProfileUserFixed p, div.informationProfileUserFixed i{
+        font-size: 2.5vw;
+    }
+    div.informationProfileUserFixed p{
+        margin-bottom: 1vh;
+    }
+    div.dataInformationProfileUserFixed{
+        text-align: center;
+    }
+    div.buttonLogout button{
+        font-size: 2.5vw;
+    }
+    div.containerContentOptions h2{
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        font-size: 6vw;
+    }
+    div.containerNavMenu{
+        height: 6vh;
+    }
+    div.optionMenu{
+        font-size: 4.5vw;
+    }
+    div.containerViewComponentOption{
+        width: 100%;
+        justify-content: center;
+    }
+    div.storyContainerProfile{
+        width: 80%;
+        height: 75vw;
+    }
+    p.storyTitle{
+        font-size: 4vw;
+    }
+    p.storyUserProfile, p.storyGenreProfile {
+        font-size: 3.2vw;
+    }
+    div.dropDownMenu{
+        width: 18vw;
+        font-size: 1.8vw;
+        top: 8vh;
+        left: 82vw;
+    }
+}
+/* Responsive FT - Search*/
+@media (max-width: 480px) {
+    div.containerSearchBar{
+        height: 8vh;
+    }
+    div.containerViewCardsCategories{
+        padding-top: 5vw;
+    }
+    div.containerTitleSearch h1{
+        font-size: 8vw;
+        margin-bottom: 2vw;
+    }
+    div.cardCategory {
+        width: 70vw;
+        height: 35vw;
+    }
+    div.containerLogoCategory{
+        width: 65%;
+    }
+    div.logoCategory{
+        width: 25vw;
+        height: 25vw;
+    }
+    div.nameCategory{
+        padding-left: 3vw;
+        font-size: 7vw;
+    }
+    .headerLeft img.logo, .footerLeft img.logo{
+        width: 28vw;
+    }
+    header p, header i, footer p{
+        font-size: 3.3vw;
+    }
+    div.headerRight{
+        height: 12vw;
+    }
+    div.containerDrop{
+        height: 60%;
+        width: 60%;
+    }
+    div.dropDownMenu{
+        width: 18vw;
+        font-size: 2.3vw;
+        top: 7vh;
+    }
+    .headerRight h4 {
+        font-size: 3.5vw;
+    }
+    div.storyContainer{
+        width: 45%;
+        height: 55vh;
+        padding: 0.5vw;
+        margin: 0 0 1vw 1vw
+    }
+    div.storyPic{
+        width: 50%;
+        height: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    div.storyBodyContainer {
+        width: 50%;
+        align-items: flex-start
+    }
+    div.storyIcons{
+        width: 100%;
+    }
+    p.storyDescription{
+        font-size: 2.2vw
+    }
+    div.photoEditProfile{
+        justify-content: flex-start;
+        height: 28vh;
+    }
+    div.photoUser{
+        width: 20vw;
+        height: 20vw;
+    }
+    div.buttonEditProfile{
+        width: 100%;
+        font-size: 3vw;
+        margin-top: 3vh;
+    }
+    div.informationProfileUserBlock{
+        height: 30vh;
+    }
+    div.informationProfileUserFixed{
+        margin: 0
+    }
+    div.informationProfileUserFixed{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div.informationProfileUserFixed p, div.informationProfileUserFixed i{
+        font-size: 3vw;
+    }
+    div.informationProfileUserFixed p{
+        margin-bottom: 1vh;
+    }
+    div.dataInformationProfileUserFixed{
+        text-align: center;
+    }
+    div.buttonLogout button{
+        font-size: 3vw;
+    }
+    div.containerContentOptions h2{
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        font-size: 6vw;
+    }
+    div.containerNavMenu{
+        height: 6vh;
+    }
+    div.optionMenu{
+        font-size: 4.5vw;
+    }
+    div.containerViewComponentOption{
+        width: 100%;
+        justify-content: center;
+    }
+    div.storyContainerProfile{
+        width: 80%;
+        height: 75vw;
+    }
+    p.storyTitle{
+        font-size: 4vw;
+    }
+    p.storyUserProfile, p.storyGenreProfile {
+        font-size: 3.2vw;
+    }
 }
 
+@media (max-width: 600px) {
+  /* Footer */
+  footer {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    height: 22vh;
+  }
+  footer div.footerLeft {
+    /* width: 100vw; */
+    display: flex;
+    justify-content: center;
+  }
+  footer p {
+    display: inline-block;
+  }
+  footer .footerLeft img.logo {
+    margin: 0;
+  }
 
+  footer div.footerRight {
+    margin: 0;
+    padding: 0;
+    width: 360px;
+    justify-content: space-evenly;
+  }
+  
+  
+  /* Home */
+  div.backgroundZindex {
+    background-image: url("../assets/fotoHome2Trans25p.png");
+  }
+  div.firstSection {
+    height: 90vh;
+
+  }
+  h1.titleFirst {
+    font-size: 40px;
+    margin: 4vh 0;
+    text-shadow: 1px 0 1px white;
+  }
+
+  p.firstP {
+    margin: 0;
+    font-size: 5vw;
+    margin-bottom: 2vh;
+  }
+  p.secondP {
+    margin: 2vh;
+    font-size: 4.1vw;
+    margin-bottom: 2vh;
+  }
+  div.leftBoxFirst {
+    height: 56vh;
+  }
+  div.leftBoxFirst *{
+    width: 95%;
+  }
+  div.rightBoxFirst  {
+    margin: 0 0;
+    width: 400px;
+    height: 32vh;
+  }
+  div.buttonBox {
+    width: 98%;
+    margin-bottom: 2vh;
+  }
+  div.secondSection {
+    height: 90vh;
+  }
+  div.secondUp {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    height: 35vh;
+    margin: -3vh 0 0 0;
+  }
+  
+  div.secondUp div.verContainer,div.secondUp div.verContainer:nth-child(2) {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  div.secondUp div.verContainer i {
+    width: 30px;
+    margin: 0 4vw 0 0;
+  }
+  div.secondUp div.verContainer p, p.block {
+    display: block;
+    width: 300px;
+  }
+  div.downBoxSecond {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    height: 60vh;
+  }
+  div.downBoxSecond div.imgBoxSecond {
+    height: 50vh;
+    min-width: 500px;
+    width: 100vw;
+  }
+  div.textRightSecondBox {
+    width: 90%;
+  }
+  div.textRightSecondBox p {
+    margin: 1vh 0;
+  }
+  div.thirdSection {
+    height: 120vh;
+  }
+  div.firstContainerUpThird {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+  div.secondContainerUpThird{
+    flex-direction: column;
+    text-align: center;
+    margin: 2vh 0 0 0;
+  }
+  div.infoSecondContainerThird {
+    justify-content: center;
+    width: 90vw;
+    height: 22vh;
+  }
+  div.infoSecondContainerThird div.numberSecondContThird p {
+    font-size: 14vw;
+    margin: 1vh 2vw 0 0;
+    font-weight: normal;
+  }
+  div.textSecondContThird {
+    width: 70vw;
+  }
+  div.textSecondContThird p.titleTextSecContTh {
+    font-size: 26px;
+  }
+  div.textSecondContThird p.bodyTxtSecContTh {
+    font-size: 18px;
+  }
+  div.imgThirdSec {
+    height: 20vh;
+  }
+}
+@media (max-width: 420px) {
+  div.buttonBox button.btn.btn-danger {
+    min-width: 50px;
+    /* height: 100px; */
+  }
+}
 
   /* estilos del register (gime) */
 .containerRegister,.containerLogin {
@@ -536,31 +1218,24 @@ section.settings {
 }
 
 /* ESTILOS DE LA HOME Y LAS SECTIONS (MAURI) */
-
-  .sectionBox{
-      /* min-height: 100vh; */
-      background-image: url("../assets/fotoHome2Trans.png");
-      position:relative;
-      background-size: cover;
-      background-position:right;
-      background-attachment: fixed;
-  }
+  
   .firstSection{
       height: 90vh;
-      /* margin-top: 4vh; */
       margin-left: 1vw;
       display: flex;
       align-items: center;
   }
   .leftBoxFirst{
       margin-left: 4vw;
-      width:50vw;
+      width:35vw;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       height: 70vh;
-  
+      position: relative;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0);
   }
   .titleFirst{
       color: rgb(103, 11, 139);
@@ -597,7 +1272,7 @@ section.settings {
       background-repeat: no-repeat;
       height: 50vh;
       width: 50vw;
-      margin-top: 20vh;
+      margin-top: 5vh;
       padding-right: 10vw;
   }
   .secondSection{
@@ -607,7 +1282,6 @@ section.settings {
       height: 100vh;
       padding-bottom: 1vh;
       margin-top: 15vh;
-      /* background-color: rgba(127, 255, 212, 0.459); */
   }
   .firstUp{
       text-align: center;
@@ -671,7 +1345,6 @@ section.settings {
       font-weight: 600;
   }
   .svgContainer{
-      /* background-color: coral; */
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -684,7 +1357,6 @@ section.settings {
       background-repeat: no-repeat;
       height: 12vh;
       width: 5vw;
-      /* background-color: cyan; */
   }
   .hulu{
       background-image: url('../assets/hulu.svg');
@@ -708,13 +1380,11 @@ section.settings {
       justify-content: space-evenly;
       align-items: center;
       margin-top: 15vh;
-      /* background-color: darksalmon; */
   }
   .upContainerThird{
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* background-color: darkseagreen; */
       justify-content: space-evenly;
       height: 62vh;
       width: 95vw;
@@ -736,7 +1406,6 @@ section.settings {
   }
   .infoSecondContainerThird{
       display: flex;
-      /* background-color: cyan; */
       height: 30vh;
       width: 25vw;
       align-items: center;
@@ -745,9 +1414,6 @@ section.settings {
       font-size: 2vw;
       font-weight: 640;
   }
-  /* .bodyTxtSecContTh{
-      color:rgb(112, 112, 112);
-  } */
   .numberSecondContThird{
       display: flex;
       color: rgb(175, 98, 194);
@@ -760,14 +1426,12 @@ section.settings {
   .textSecondContThird{
       font-size: 1.2vw;
       width: 20vw;
-      /* height: 19vh; */
       margin-right: 1vw;
   }
   .imgThirdSec{
       display: flex;
       width: 80vw;
       padding-left: 1.5vw;
-      /* background-color: darkturquoise; */
       justify-content: space-around ;
       color: whitesmoke;
   }
@@ -793,7 +1457,6 @@ section.settings {
   .readers{
       background-image: url('../assets/cuadro1.jpg');
       background-size: cover;
-      /* background-position: center; */
       background-repeat: no-repeat;
       width: 22vw;
       height: 34vh;
@@ -835,12 +1498,12 @@ section.settings {
       flex-direction: column;
       align-items: center;
       height: 100vh;
+      width: 100%;
       margin-top: 15vh;
       margin-bottom: 17vh;
       justify-content: space-between;
   }
   .upContainerFourth{
-      /* background-color: thistle; */
       height: 40vh;
       width: 50vw;
       padding-bottom: 4vh;
@@ -1023,8 +1686,25 @@ section.settings {
     background-color: hotpink;
     background-size: cover;
     border-radius: 50%;
+    width: 8vw;
+    height: 8vw;
 }
             /* UserProfile */
+
+.letterUser{
+    background-color: rgb(103, 11, 139);
+    color: white;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vw;
+    font-weight: bold;
+    margin-bottom: 1.5vh;
+}
+
 .containerComponentUserProfile{
     flex-direction: row;
      background-image: url('../assets/IMG-20210214-WA0068.jpg');
@@ -1032,10 +1712,10 @@ section.settings {
     background-size: cover;
     background-attachment: fixed;
     max-width: 100vw;
-    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    flex: 1;
 }
 .containerBannerUserData{
     width: 30%;
@@ -1049,46 +1729,28 @@ section.settings {
 }
 .bannerUserData {
     height: 100%;
-    width: 80%;
+    width: 75%;
     display: flex;
     flex-direction: column;
-    /*border-left: 1px solid green;
-    border-top: 1px solid green;
-    border-bottom: 1px solid green;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;*/
 }
 .photoEditProfile {
     width: 100%;
-    height: 30vh;
+    height: 45%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: space-between;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-bottom: 1vw;
 }
 .photoUser {
-    background-color: rgb(103, 11, 139);
-    background-position: center;
-    width: 10vw;
-    height: 10vw;
+    background-color: grey;
+    width: 12vw;
+    height: 12vw;
     border-radius: 50%;
     background-size: cover;
-}
-.letterUser{
-    background-color: rgb(103, 11, 139);
-    color: white;
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 8vw;
-    font-weight: bold;
+    margin-bottom: 1.5vh;
 }
 .buttonEditProfile{
     width: 13vw;
@@ -1099,25 +1761,18 @@ section.settings {
     border: none;
     padding: 0.5vw;
 }
-.containerInformationFixed {
-    width: 100%;
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 .informationProfileUserBlock {
     width: 100%;
-    height: 40vh;
+    height: 55%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     padding-top: 2vw;
 }
 .informationProfileUserFixed {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-bottom: 2vh;
     width: 80%;
     font-size: 1.5vw;
@@ -1136,7 +1791,6 @@ section.settings {
     color: rgb(103, 11, 139)
 }
 .dataInformationProfileUserFixed a{
-    
     width: 50%;
     outline: none;
     border: none;
@@ -1167,8 +1821,9 @@ section.settings {
 }
 
 .titleProfile{
-    height: 15%;
-    font-size: 3.5vw;
+    text-align: center;
+    padding: 1vw;
+    height: 10%;
 }
 .containerNavMenu{
     width: 100%;
@@ -1176,13 +1831,12 @@ section.settings {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1vw;
 }
 .optionMenu{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5vw;
+    font-size: 2vw;
     padding: 0.5vw;
 }
 .optionMenu:hover{
@@ -1199,12 +1853,28 @@ section.settings {
     font-weight: bold;
 }
 .containerViewComponentOption{
-    width: 80%;
     display: flex;
     flex-wrap: wrap;
     align-self: center;
     justify-content: space-between;
     padding: 1vw 1vw 1vw 1vw;
+    width: 100%;
+}
+.containerPhotoStoryBook{
+    width: 15vw;
+    height: 40vh;
+    background-color:tomato;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@media (max-width: 1920px) {
+    div.dropDownMenu{
+    width: 14vw;
+    font-size: 1.5vw;
+    left: 79vw;
+    top: 9vh;
+    }
 }
 /* COMPONENTE DE MI BIBLIOTECA O MIS LIBROS (MAURI) */
 .booksBoxUserProf{
@@ -1217,7 +1887,7 @@ section.settings {
     position: absolute;
     display: flex;
     justify-content: center;
-    left: 81vw;
+    left: 82vw;
     top: 10vh;
     z-index: 5;
     transition: 1s ease;
@@ -1305,7 +1975,6 @@ section.settings {
     background-color: white;
     box-shadow: 6px -4px 5px rgb(123, 122, 122);
     margin-bottom: 1vw;
-    /* background-color: tomato; */
 }
 .storyContainerProfile:hover {
     box-shadow: 7px -5px 8px rgb(50, 50, 50);
@@ -1522,6 +2191,10 @@ section.settings {
     border: none;
 }
 
+textarea:focus{
+    outline: none;
+}
+
 
 .imag-form-chapter {
     background-image: url(../assets/Paisaje\ 11.jpg);
@@ -1549,6 +2222,7 @@ section.settings {
 }
 
 .container-form-chapter {
+    height: 100vh;
     background-color: white;
     border: solid 3px rgb(55, 112, 187);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5),0 17px 50px 0 rgba(0, 0, 0, 0.5);
@@ -1558,14 +2232,38 @@ section.settings {
     align-items: center;
 }
 
+.capitulo{
+    width: 60vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .form-chapter {
     width: 60vw;
-    padding: 10vh;
+    height: 45vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
+    margin-bottom: 3vh;
 }
+
+.form-chapter::-webkit-scrollbar {
+    width:1.7vh;
+}
+
+.form-chapter::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.form-chapter::-webkit-scrollbar-thumb {
+    background-color: rgb(55, 112, 187);
+}
+
 
 .input-chapter{
     width: 45VW;
@@ -1587,6 +2285,9 @@ section.settings {
     padding-left: 3vh;
     padding-right: 3vh;
     height: 10vh;
+    width: 44vw;
+    resize: none;
+    margin-right: 1vh;
 }
 
 
@@ -1645,21 +2346,16 @@ footer p {
     color: rgb(103, 11, 139);
 }
 
-.footerRight a{
-    color:rgb(103, 11, 139)!important;
-}
-
 /* COMPONENTE STORIES (MAURI) */
 
 .capitalize{
     text-transform: capitalize;
 }
 .storiesContainer{
-    background-image: url("../assets/fotoHome2.jpg");
+    background-image: url("../assets/fotoHome2Trans.png");
     background-size: cover;
     background-position:center;
     background-attachment: fixed;
-    background-color: cyan;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1682,7 +2378,6 @@ footer p {
     align-items: center;
     height: 10vh;
     width: 100%;
-    /*  */
 }
 .downContainerStories{
     width: 100%;
@@ -1782,53 +2477,53 @@ footer p {
 
 /* componente storyDescriptio (gime) */
 
-.uno{
-    height: 80vh;
-    width: 98vw;
+.conteinerResp{
+    height: 50vh;
+    width: 98.7vw;
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    background-image: url(../assets/fontoDesciptionStory.jpg);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0px 16px 0 rgba(0,0,0,0.5);
 }
 
-.dos{
+.views-stars-chapters{
     display: flex;
-    width: 25vw;
+    width: 20vw;
     justify-content: space-between;
     margin-top: 3vh;
 }
 
-.hola{
-    background-size: cover;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5),0 17px 50px 0 rgba(0, 0, 0, 0.5);
-}
-
-.cuatro{
-    position: absolute;
-    display: flex;
-    width: 60vw;
-    margin-top: 25vh;
-    margin-left: 3vh;
-    align-items: center;
-}
-
-.chauu{
-    background-image: url(../assets/fontoDesciptionStory.jpg);
-    height: 60vh;
-    width: 98.7vw;
+.imag-book-story-description{
+    width:180px;
+    height:300px;
     background-position:center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5),0 17px 50px 0 rgba(0, 0, 0, 0.5);
 }
 
-.cinco {
+.container-image-info-book{
+    height: 50vh;
+    display: flex;
+    width: 60vw;
+    margin-left: 3vh;
+    align-items: center;
+    margin-bottom: -15vh;
+}
+
+
+.container-info-book {
     color: rgb(255, 255, 255);
-    margin-left: 4vh;
+    margin-left: 15px;
 }
 
 .BotonLeer {
     padding: 1vh 8vh 1vh 8vh;
-    margin-top: 11vh;
+    margin-top: 7vh;
     background-color: rgb(98, 18, 129);
     color: rgb(255, 255, 255);
     border: none;
@@ -1838,18 +2533,18 @@ footer p {
     border-radius: 25px 25px 25px 25px ;
 }
 
-.seis{
+.table-title-container{
     width: 50vw;
     border-bottom: solid 2px rgb(103, 11, 139);
     margin-bottom: 0vh;
     margin-left: 4vh;
 }
 
-.seis h2 {
+.table-title-container h2 {
     margin-left: 3vh;
 }
 
-.siete{
+.table-containe{
     display: flex;
     flex-direction: column;
     margin-bottom: 5vh;
@@ -1857,7 +2552,7 @@ footer p {
     margin-left: 4vh;
 }
 
-.siete button {
+.table-containe button {
     width:50vw ;
     text-align: start;
     background-color: rgb(245, 245, 245);
@@ -1865,21 +2560,22 @@ footer p {
     padding: 2vh 0vh 2vh 0vh;
 }
 
-.siete button:hover{
+.table-containe button:hover{
     background-color: rgb(228, 228, 228);
     font-size: 3vh;
 }
 
-.siete button p {
+.table-containe button p {
     margin-left: 3vh;
 }
 
-.ocho {
+.comment-table-container {
+    margin-top: 20vh;
     display: flex;
     justify-content: space-between;
 }
 
-.nueve{
+.coments-container-storyDescription{
     width: 34vw;
     height: 60vh;
     border-radius: 10px;
@@ -1891,6 +2587,262 @@ footer p {
     margin-right: 8vh;
 }
 
+.stars{
+    margin-top: 0vh;
+}
+
+/* responsive storyDescription (gime) */
+@media (max-width: 992px) {
+    .conteinerResp{
+        height: 40vh;
+        min-width: 100vw;
+        display: flex;
+        justify-content: flex-start;
+        background-image: url(../assets/fontoDesciptionStory.jpg);
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 0px 16px 0 rgba(0,0,0,0.5);
+    }
+
+    .imag-book-story-description{
+        height: 220px;
+        min-width: 130px;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5),0 17px 50px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .views-stars-chapters{
+        width: 18vw;
+        font-size: 20px;
+    }
+
+    .views-stars-chapters h5 {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-image-info-book {
+        left: 0;
+        display: flex;
+        height: 20vh;
+        width: 60vw;
+        margin-top: 0vh;
+        margin-left: 3vh;
+        margin-bottom: 0vh;
+    }
+
+    .container-info-book{
+        height: 140px;
+        width: 280px;
+        font-size: 2vh;
+        margin-left: 2vh;
+    }
+
+    .container-info-book h2 {
+        font-size: 25px;
+    }
+
+    .BotonLeer{
+        padding: 1vh 3vh 1vh 3vh;
+        margin-top: 2vh;
+        background-color: rgb(98, 18, 129);
+        color: rgb(255, 255, 255);
+        border: none;
+        font: inherit;
+        cursor: pointer;
+        outline: none;
+        border-radius: 25px 25px 25px 25px ;
+    }
+
+    .stars{
+        display: flex;
+        width: 60vh;
+    }
+
+    .comment-table-container {
+        margin-top: 10vh;
+        display: flex;
+        justify-content: space-between;
+    }
+    .coments-container-storyDescription{
+        width: 38vw;
+        height: 40vh;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border: solid 1px rgb(103, 11, 139);
+        box-shadow: 0 12px 10px 0 rgba(0,0,0,0.5),0 17px 25px 0 rgba(0, 0, 0, 0.5);
+        margin-right: 4vh;
+    }
+
+    .table-title-container{
+        width: 50vw;
+        border-bottom: solid 2px rgb(103, 11, 139);
+        margin-bottom: 0vh;
+    }
+
+    .table-containe{
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5vh;
+        border-bottom: solid 2px rgb(103, 11, 139);
+    }
+    
+    .table-containe button {
+        width:50vw ;
+        text-align: start;
+        background-color: rgb(245, 245, 245);
+        border: none;
+        padding: 2vh 0vh 2vh 0vh;
+    }
+    
+    .table-containe button:hover{
+        background-color: rgb(228, 228, 228);
+        font-size: 3vh;
+    }
+    
+    .table-containe button p {
+        margin-left: 3vh;
+    }
+}
+@media (max-width: 600px) {
+    .conteinerResp{
+        height: 40vh;
+        min-width: 100vw;
+        display: flex;
+        justify-content: flex-start;
+        background-image: url(../assets/3572.jpg);
+        background-position:initial;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 0px 16px 0 rgba(0,0,0,0.5);
+    }
+
+    .imag-book-story-description{
+        height: 220px;
+        min-width: 130px;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5),0 17px 50px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .views-stars-chapters{
+        width: 27vw;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .views-stars-chapters div {
+        width: 15vh;
+    }
+
+    .views-stars-chapters div h5 {
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-image-info-book {
+        position: absolute;
+        display: flex;
+        left: 0;
+        height: 20vh;
+        width: 60vw;
+        margin-top: 0vh;
+        margin-left: 3vh;
+        margin-bottom: 0vh;
+    }
+
+    .container-info-book{
+        height: 140px;
+        width: 280px;
+        font-size: 2vh;
+        margin-left: 2vh;
+    }
+
+    .container-info-book h2 {
+        font-size: 25px;
+    }
+
+    .BotonLeer{
+        padding: 1vh 3vh 1vh 3vh;
+        margin-top: 2vh;
+        background-color: rgb(98, 18, 129);
+        color: rgb(255, 255, 255);
+        border: none;
+        font: inherit;
+        cursor: pointer;
+        outline: none;
+        border-radius: 25px 25px 25px 25px ;
+    }
+
+    .stars{
+        display: flex;
+        width: 60vh;
+    }
+
+    .comment-table-container {
+        margin-top: 10vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .coments-container-storyDescription{
+        width: 80vw;
+        height: 40vh;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border: solid 1px rgb(103, 11, 139);
+        box-shadow: 0 12px 10px 0 rgba(0,0,0,0.5),0 17px 25px 0 rgba(0, 0, 0, 0.5);
+        margin-left: 8vh;
+        margin-bottom: 10vh;
+    }
+
+    .seis{
+        width: 80vw;
+        border-bottom: solid 2px rgb(103, 11, 139);
+        margin-bottom: 0vh;
+    }
+
+    .table-containe{
+        width: 80vw;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 5vh;
+        border-bottom: solid 2px rgb(103, 11, 139);
+    }
+    
+    .table-containe button {
+        width:80vw ;
+        text-align: start;
+        background-color: rgb(245, 245, 245);
+        border: none;
+        padding: 2vh 0vh 2vh 0vh;
+    }
+    
+    .table-containe button:hover{
+        background-color: rgb(228, 228, 228);
+        font-size: 3vh;
+    }
+    
+    .table-containe button p {
+        margin-left: 3vh;
+    }
+
+}
 /* estilos de comentarios (gime) */
 
 .inputButtomEnvComment {
@@ -1914,20 +2866,20 @@ footer p {
     margin-left: 5vh;
 }
 
-.chichi{
+.comments-storyDescription{
     overflow-x: auto;
     margin-top: 5vh;
 }
 
-.chichi::-webkit-scrollbar {
+.comments-storyDescription::-webkit-scrollbar {
 width: 10px;
 }
 
-.chichi::-webkit-scrollbar-track {
+.comments-storyDescription::-webkit-scrollbar-track {
 background-color: transparent;
 }
 
-.chichi::-webkit-scrollbar-thumb {
+.comments-storyDescription::-webkit-scrollbar-thumb {
 background-color: rgba(194, 99, 231, 0.534);
 border-radius: 30px;
 }
@@ -1974,6 +2926,70 @@ border-radius: 30px;
 
 .d-flex{
     height: 10vh;
+}
+
+@media (max-width: 992px) {
+    .inputButtomEnvComment {
+        margin-top: 5vh;
+        width: 30vw;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5vh;
+    }
+    .inputButtomEnvComment input {
+        width: 30vw;
+    }
+
+    .comments-storyDescription h2 {
+        font-size: 25px;
+    }
+
+    .fa-trash-alt{
+        height: 2vh;
+    }
+    .fa-edit{
+        height: 1vh;
+        width: 2vw;
+    }
+    .botonesEditAndBorrar {
+        display: flex;
+    }
+}
+
+@media (max-width: 600px) {
+    .inputButtomEnvComment {
+        margin-top: 5vh;
+        width: 65vw;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5vh;
+    }
+
+    .inputButtomEnvComment input {
+        width: 60vh;
+    }
+
+    .comments-storyDescription h2 {
+        font-size: 25px;
+    }
+
+    .containerComments{
+        width: 65vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .contentComment {
+        width: 35vw;
+        background-color: rgb(138, 61, 168);
+        padding: 0.5vh;
+        border-radius: 25px;
+    }
+
+    .rounded-circle{
+        width: 8vh;
+        margin-right: 1vh;
+    }
 }
 
 
@@ -2317,6 +3333,7 @@ border-radius: 30px;
     font-size: 6vh;
     margin-top: 5vh;
     margin-bottom: 3vh;
+    font-weight: bold;
 }
 
 .titleCap div h5 {
@@ -2325,6 +3342,7 @@ border-radius: 30px;
 
 .userDate {
     margin-bottom: 4vh;
+    font-size: 2vw;
 }
 
 .containerParrafosAndButton button {
@@ -2373,8 +3391,36 @@ border-radius: 30px;
 }
 
 .containerParrafos {
-    width: 70vw;
+    width: 75vw;
     margin-bottom: 3vh;
+    padding: 2vw;
+    background-color: rgba(248, 231, 200, 0.2);
+    box-shadow: 6px -6px 10px rgb(110, 110, 110);
+}
+.containerParrafos p{
+    text-align: justify;
+    text-justify: inter-word;
+    padding-bottom: 3vh;
+    font-size: 1.9vw;
+}
+
+@media (max-width: 992px) {
+    .containerParrafos p{
+        padding-bottom: 1.8vw;
+        font-size: 2.6vw;
+    }
+}
+@media (max-width: 600px) {
+    .containerParrafos p{
+        padding-bottom: 2vw;
+        font-size: 2.9vw;
+    }
+}
+@media (max-width: 480px) {
+    .containerParrafos p{
+        padding-bottom: 1.8vw;
+        font-size: 3.5vw;
+    }
 }
 
 /* ESTILOS DE MODIFYBOOK (SANTI) */
@@ -2396,15 +3442,45 @@ border-radius: 30px;
 
 .modify-book-chapters {
     width: 90vw;
-    /* height: 100%; */
+}
+.cajaSpinner{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+.cajitaSpinner{
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform:translate(-50%,-50%);
+}
+.spinner{
+    width: 100px!important;
+    height: 100px!important;
+    border:10px solid currentColor!important;
+    border-right-color: transparent!important;
+    color:rgb(103, 11, 139)!important;
 }
 
 .resultBusqueda{
-    width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
-/* ESTILOS MODIFICAR LIBRO (MAURI) */
+.storyBookImg{
+    background-size: cover;
+}
+.ops{
+    color: rgb(103, 11, 139);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .oneModify{
     height: 80vh;
     width: 98vw;
@@ -2455,6 +3531,7 @@ border-radius: 30px;
     outline: none;
     border-radius: 25px 25px 25px 25px ;
 }
+
 .eightModify{
     display: flex;
     justify-content: center;
@@ -2499,3 +3576,36 @@ border-radius: 30px;
     flex-direction: column;
     align-items: center;
 }
+.storyBookImg{
+    background-size: cover;
+}
+.ops{
+    color: rgb(103, 11, 139);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cajaSpinner{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+.cajitaSpinner{
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform:translate(-50%,-50%);
+}
+.spinner{
+    width: 100px!important;
+    height: 100px!important;
+    border:10px solid currentColor!important;
+    border-right-color: transparent!important;
+    color:rgb(103, 11, 139)!important;
+}
+
+

@@ -58,8 +58,6 @@ const App = (props) => {
     routes = 
     <>
     <Switch>
-      <Route path="/settings" component={Settings}/>
-      <Route path="/add-book" component={NewBook}/>
       <Route exact path="/" component={Home} />
       <Route exact path="/search" component={Search}/>
       <Route path="/register" component={Register}/>
@@ -67,9 +65,6 @@ const App = (props) => {
       <Route path="/stories/:genre" component={Stories}/>
       <Route path="/story/:id" component={StoryDescription}/>
       <Route path="/book/:id/:chapter/:index" component={StoryBook}/>
-      <Route path='/finish-book/:id' component={FinishBook}/>
-      <Route path='/modify-book/:id' component={ModifyBook}/>
-      <Route path='/userprofile' component={UserProfile}/>
       <Route path='/send-email' component={SendEmail}/>
       <Route path='/reset-password/:email' component={ForgotPassword}/>
       <Redirect to="/"/>

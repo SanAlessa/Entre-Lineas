@@ -6,6 +6,7 @@ import FourthSection from './FourthSection'
 const Home = () => {
   return (
     <>
+      <div className="backgroundZindex"></div>
       <div className="sectionBox">
         <FirstSection />
         <SecondSection />

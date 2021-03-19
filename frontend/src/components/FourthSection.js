@@ -3,7 +3,7 @@ const FourthSection = ()=>{
         <div className='fourthSection'>
             <div className='upContainerFourth'>
                 <div className='fourthSecText'>
-                    <p className='fourthTitle'>Lleva Entre Lineas Contigo</p>
+                    <p className='fourthTitle'>Lleva Entre Líneas Contigo</p>
                     <p className='fourthBody'>Lee y escribe en cualquier parte, incluso sin conexión.</p>
                 </div>
                 <div className='fourthSecButtons'>

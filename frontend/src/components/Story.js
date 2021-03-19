@@ -6,7 +6,7 @@ const Story=(props)=>{
         props.incViews(props.libro._id)
     }
     return(
-        <>
+        
         <div className='storyContainer'>
                 <div className='storyPic' style={{backgroundImage:`url(${props.libro.image})`}}></div>
                 <div className='storyBodyContainer'>
@@ -24,7 +24,7 @@ const Story=(props)=>{
                     </div>
                 </div>
         </div>
-        </>
+        
     )
 }
 

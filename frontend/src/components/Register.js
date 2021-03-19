@@ -24,7 +24,7 @@ const Register = ( props ) => {
     }
 
     const checkIfInputsAreEmpty = usuario.firstname === ''|| usuario.lastname  === ''|| usuario.birthday === ''|| usuario.email === ''|| usuario.password === '';
-    console.log(usuario)
+
     const alertError = (error) =>{
         Swal.fire({
             icon: 'error',
@@ -48,23 +48,20 @@ const Register = ( props ) => {
     const validateUser = async e => { // function that runs when you click the create user button
         e.preventDefault() //prevent reloading the page
         if(checkIfInputsAreEmpty){
-            console.log('hola')
             const text = 'Verifique que todos los campos esten llenos'
             alertError(text)
             return false
         }
 
         const respuesta = await props.makeNewUser(usuario)
-        console.log(respuesta)
         if(respuesta && !respuesta.success){
-                alertError(respuesta.error)
+            respuesta.errores.map(respuesta=>alertError(respuesta.message))
         }else{
             alertSuccess()
         }
     }
 
     const responseGoogle = async (response) => {
-        console.log(response.profileObj.imageUrl)
         if(response.error){
             const text = 'Algo salio mal con tu cuenta de Google, vuelve a intentar!'
             alertError(text)
@@ -77,33 +74,13 @@ const Register = ( props ) => {
                 image: response.profileObj.imageUrl
             })
         if(respuesta && !respuesta.success){
-            alertError(respuesta.errores)
-            console.log(respuesta)
+            alertError(respuesta.error)
         }else{
             alertSuccess()
         }
     }
 }
 
-const responseFacebook = async (response) => {
-    var name = response.name.split(" ")
-    if(response.error){
-        const text = 'Algo salio mal con tu cuenta de Facebook, vuelve a intentar!'
-        alertError(text)
-    }else{
-        const respuesta = await props.makeNewUser({
-            firstname:name[0],
-            lastname:name[1],
-            email: response.email,
-            password:response.id
-        })
-    if(respuesta && !respuesta.success){
-        alertError(respuesta.errores)
-    }else{
-        alertSuccess()
-        }
-    }
-}
 
 
 return (
@@ -132,15 +109,6 @@ return (
                             onSuccess={responseGoogle}
                             onFailure={responseGoogle}
                             cookiePolicy={'single_host_origin'}
-                        />
-                        <FacebookLogin
-                            appId="781019919514137"
-                            autoLoad={false}
-                            fields="name,email,picture"
-                            callback={responseFacebook}
-                            textButton="   Crear usuario con Facebook"
-                            icon="fa-facebook "
-                            cssClass="iconoFacebook"
                         />
                 </div>
             </div>

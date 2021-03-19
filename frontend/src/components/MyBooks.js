@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 const MyBooks = (props)=>{
-
+    console.log(props.libro)
     return (
         <>
         <div className='storyContainerProfile'>

@@ -9,7 +9,7 @@ const CardCategory = (props) => {
             {props.cardCategory.genre}
           </div>
           <div className='containerLogoCategory'>
-            <div className='logoCategory' style={{ backgroundImage: `url(${props.cardCategory.image})`, width: '8vw', height: '8vw' }}>
+            <div className='logoCategory' style={{ backgroundImage: `url(${props.cardCategory.image})`}}>
             </div>
           </div>
         </div>

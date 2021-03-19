@@ -5,7 +5,6 @@ import Swal from'sweetalert2';
 
 
 const Settings = (props) => {
-  console.log(props.loggedUser)
   const [change, setChange] = useState(false)
   const [email, setEmail] = useState('')
   const [firstname, setFirstname] = useState('')
@@ -16,10 +15,21 @@ const Settings = (props) => {
 
 
   useEffect(()=>{
-    setEmail(props.loggedUser.email)
-    setFirstname(props.loggedUser.firstname)
-    setLastname(props.loggedUser.lastname)
-    if(props.loggedUser.birthday) setBirthday(props.loggedUser.birthday.substr(-25, 10))
+    if(!props.loggedUser){
+      props.history.push('/search')
+      Swal.fire({
+        icon: 'error',
+        title: '¡Ups!',
+        text: 'Algo salio mal, te pedimos disculpas',
+        showConfirmButton: false,
+        timer: 4000
+        })
+    }else{
+      setEmail(props.loggedUser.email)
+      setFirstname(props.loggedUser.firstname)
+      setLastname(props.loggedUser.lastname)
+      if(props.loggedUser.birthday) setBirthday(props.loggedUser.birthday.substr(-25, 10))
+    }
   },[])
 
   const edit = (e) => {
@@ -33,7 +43,7 @@ const Settings = (props) => {
     setFileUrl(foto)
   }
 
-  const prueba = (e) => {
+  const fileReader = (e) => {
     processImage()
     setImage(e.target.value)
   }
@@ -46,8 +56,8 @@ const Settings = (props) => {
         showConfirmButton: false,
         timer: 4000
         })
-}
-console.log(props.loggedUser)
+  }
+
   const send = e => {
     e.preventDefault()
     const emailValue = document.getElementById('email').value
@@ -114,19 +124,19 @@ console.log(props.loggedUser)
             <input type="date" name="birthday" id="birthday" disabled={!change ? true : false} value={birthday} onChange={(e)=>setBirthday(e.target.value)} />
           </div>
           <div className="lineImgUser">
-              <div className="selectImagPerfil">
-                <label htmlFor="image" for="image">
-                  <i for="image" class="fas fa-hand-pointer"></i>
-                  <h6>Click para seleccionar Imagen</h6>
+              <div className="selectImagPerfil" style={{cursor: 'pointer'}}>
+                <label htmlFor="image" for="image" style={{cursor: 'pointer'}}>
+                  <i style={{cursor: 'pointer'}} for="image" class="fas fa-hand-pointer"></i>
+                  <h6 style={{cursor: 'pointer'}} >Click para seleccionar Imagen</h6>
                 </label>
               </div>
-            <input className="imagePort" type="file" name="image" id="image" value={image} onChange={prueba}/>
+            <input className="imagePort" type="file" name="image" id="image" value={image} onChange={fileReader}/>
           </div>
           <div className="line">
             <div className="buttonSettings" onClick={send}><span>Confirmar cambios</span></div>
           </div>
         </form>
-        <div className="userImage" style={{width: '20vw', height: '50vh', backgroundColor:"black", backgroundImage: `url('${fileUrl}')`}}>
+        <div className="userImage" style={{width: '20vw', height: '50vh', boxShadow: '0px 5px 5px rgba(0,0,0,0.2)', backgroundImage: `url('${fileUrl}')`}}>
       </div>
     </div>
     </section>

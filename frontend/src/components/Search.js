@@ -12,23 +12,11 @@ const Search = (props) => {
         props.getBooks()
     },[])
 
-    console.log(props.books)
     const searching = (e) => {
         props.search(e.target.value)
         setValue(true)
         e.target.value === "" && setValue(false)
     }
-
-    // var frase = 'C://users/downloads/EntreLineas/'
-
-    // var lafrase= frase+'usrimgs'
-    // console.log(lafrase)
-    // var nuevafrase = lafrase.split(frase,2)
-    // console.log(nuevafrase)
-
-    // var frase = 'C://users/downloads/EntreLineas/usrimgs'
-    // var nuevafrase = frase.split('C://users/downloads/EntreLineas/',2)
-    // console.log(nuevafrase[1])
 
     return(
         <div className='containerComponentSearchStories'>
@@ -50,11 +38,11 @@ const Search = (props) => {
             : 
             <>
             <h2>Su busqueda</h2>
-            <div className="resultBusquedad">
+            <div className="resultBusqueda">
             {props.filter.map((book, index) =>
-            <div>
+            
                 <Story libro={book} key={index}/>
-            </div>)}
+            )}
             </div>
             </>}
         </div>

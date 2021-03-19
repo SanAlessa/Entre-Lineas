@@ -13,7 +13,7 @@ const Comment = (props) => {
             setLoggedUser(props.loggedUser.id)
         }
     }, [])
-    console.log(props.comment)
+    
     const deleteC = async (e) => {
         await props.deleteComments(props.id, props.comment._id, props.loggedUser.token)
     }
