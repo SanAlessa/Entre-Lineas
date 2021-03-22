@@ -51,9 +51,10 @@ const Register = ( props ) => {
             alertError(text)
             return false
         }
-
         const respuesta = await props.makeNewUser(usuario)
+        console.log(respuesta)
         if(respuesta && !respuesta.success){
+            console.log('hola pa')
             respuesta.errores.map(respuesta=>alertError(respuesta.message))
         }else{
             alertSuccess()
